@@ -3,11 +3,12 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
              http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
-  <persistence-unit name="disqueria" transaction-type="RESOURCE_LOCAL">
+
+  <persistence-unit name="PersistenceAppPU" transaction-type="RESOURCE_LOCAL">
     <properties>
-        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/disqueria?serverTimezone=UTC"/>
+        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/disqueria_db?serverTimezone=UTC"/>
       	<property name="javax.persistence.jdbc.user" value="root"/>
-      	<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      	<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       	<property name="javax.persistence.jdbc.password" value=""/>
         <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
