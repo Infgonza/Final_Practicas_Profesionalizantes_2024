@@ -43,7 +43,7 @@ public class ClienteServiceImpl extends BaseServiceImpl<Cliente, Long> implement
         Usuario usuario = Usuario.builder()
                 .nombreUsuario(registroDTO.getNombreUsuario())
                 .email(registroDTO.getEmail())
-                .contrasenia(registroDTO.getContrasenia()) // Considera encriptar la contraseña
+                .contrasenia(registroDTO.getContrasenia()) 
                 .rol(registroDTO.getRol())
                 .build();
         usuario = usuarioRepository.save(usuario);
