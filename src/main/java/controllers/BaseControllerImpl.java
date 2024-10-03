@@ -14,6 +14,7 @@ import dto.ClienteRegistroDTO;
 import entities.Cliente;
 import services.BaseServiceImpl;
 
+
 public abstract class BaseControllerImpl<E, S extends BaseServiceImpl<E, Long>> implements BaseController<E, Long>{
 
 	@Autowired

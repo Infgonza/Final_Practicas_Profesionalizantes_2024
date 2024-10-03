@@ -21,7 +21,7 @@ import services.UsuarioServiceImpl;
 @RequestMapping(path = "api/v1/auth")
 public class AuthController extends BaseControllerImpl<Usuario, UsuarioServiceImpl> {
 
-    @PostMapping("/registro")
+    @PostMapping("registro")
     public ResponseEntity<?> registro(@RequestBody RegistroDTO registroDTO) {
         try {
             Usuario nuevoUsuario = servicio.registrar(registroDTO);

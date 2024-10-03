@@ -15,8 +15,8 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY = "tu_clave_secreta_muy_larga_y_segura_aqui";
-    private static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60; // 5 horas
+    private static final String SECRET_KEY = "2dDO4nloqjEv9AqGNFY9pca3TSS10/L18Y4bXFfdt5Q=\r\n";
+    private static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60; 
 
     private Key getSigningKey() {
         byte[] keyBytes = SECRET_KEY.getBytes();
@@ -38,5 +38,5 @@ public class JwtService {
                 .compact();
     }
 
-    // Métodos adicionales para validar y extraer información del token
+   
 }

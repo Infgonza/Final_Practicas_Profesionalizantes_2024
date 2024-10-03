@@ -3,6 +3,7 @@ package services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 import dto.LoginDTO;
@@ -39,7 +40,7 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario, Long> implement
 				.nombreUsuario(registroDTO.getNombreUsuario())
 				.email(registroDTO.getEmail())
                 .contrasenia(passwordEncoder.encode(registroDTO.getContrasenia()))
-                .rol("USER")
+                .rol("Usuario")
                 .build();
 		return usuarioRepository.save(nuevoUsuario);		
 	}

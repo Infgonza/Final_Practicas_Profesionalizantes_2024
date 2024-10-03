@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="imagenes/icono2.png" />
+
+    <title>Groove Records</title>
+</head>
+
+<body>
+    
+<header>
+        <div class="container">
+
+          <img src="imagenes/logo.png" alt="logo">  
+          
+
+         <nav>
+            <ul>
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                
+            </ul>
+         </nav>
+
+         <div class="search-bar">
+            <input type="text" placeholder="Buscar">
+            <button><i class="fas fa-search"></i></button>
+         </div>
+
+         <div class="user" >
+             <a href="login.html">
+              <button ><i class="fa fa-user fa-lg" aria-hidden="true" ></i></button>
+             </a>
+            
+         </div>
+
+         <div class="cart">
+          <a href="carrito.html">
+              <button><i class="fa fa-shopping-cart fa-lg " aria-hidden="true" ></i></button>
+          </a>
+       </div>
+        </div>
+        
+</header>
+      
+
+  
+<main role="main">
+  <div class="mi-cuenta-container">
+      <h1 class="h1-mi-cuenta">Mi cuenta</h1>
+      <div class="mi-cuenta-flex">
+          <section class="informacion">
+            <h2 class="h2-mi-cuenta">Información</h2>
+            <div class="info-item">
+                <span class="icon person-icon"></span>
+                <span id="nombre-display">Nombre</span>
+                <input type="text" id="nombre-input" class="edit-input" style="display:none;">
+            </div>
+            <div class="info-item">
+                <span class="icon phone-icon"></span>
+                <span id="telefono-display">Teléfono</span>
+                <input type="tel" id="telefono-input" class="edit-input" style="display:none;">
+            </div>
+            <div class="info-item">
+                <span class="icon email-icon"></span>
+                <span id="correo-display">Correo</span>
+                <input type="email" id="correo-input" class="edit-input" style="display:none;">
+            </div>
+            <button id="editar-btn" class="edit-link">Editar</button>
+            <button id="guardar-btn" class="edit-link" style="display:none;">Guardar</button>
+        </section>
+
+          <section class="mis-compras">
+              <h2 class="h2-mi-cuenta">Mis compras</h2>
+              <div class="carrito-icono">
+                  <span class="icon cart-icon"></span>
+                  
+              </div>
+              <p class="primera-compra">¡Hacé tu primera compra!</p>
+              <a href="productos.html">
+                <button class="boton-tienda">IR A LA TIENDA</button>
+              </a>
+              
+          </section>
+      </div>
+  </div>
+</main>
+ 
+ 
+ 
+<footer class="footer">
+  <ul class="logo">
+    
+    <img src="/Front/imagenes/logofooter.png">
+    
+  </ul>
+  <ul class="social-icon">
+    <li class="icon-elem">
+      <a href="#" class="icon">
+        <ion-icon name="logo-youtube"></ion-icon>
+      </a>
+    </li>
+    <li class="icon-elem">
+      <a href="#" class="icon">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </a>
+    </li>
+    <li class="icon-elem">
+      <a href="#" class="icon">
+        <ion-icon name="logo-whatsapp"></ion-icon>
+      </a>
+    </li>
+    <li class="icon-elem">
+      <a href="#" class="icon">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </a>
+    </li>
+    <li class="icon-elem">
+      <a href="#" class="icon">
+        <ion-icon name="mail-outline"></ion-icon>
+      </a>
+    </li>
+  </ul>
+
+  <ul class="menu">
+    <li class="menu-elem">
+      <a href="index.html" class="menu-icon"> Inicio </a>
+    </li>
+    <li class="menu-elem">
+      <a href="productos.html" class="menu-icon"> Productos </a>
+    </li>
+    <li class="menu-elem">
+      <a href="contacto.html" class="menu-icon"> Contacto </a>
+    </li>
+    <li class="menu-elem">
+      <a href="" class="menu-icon"> Envíos </a>
+    </li>
+    <li class="menu-elem">
+      <a href="" class="menu-icon"> Sobre Nosotros </a>
+    </li>
+  </ul>
+  <p class="text">Copyright 2024 | Groove Records®</p>
+</footer>
+
+<script
+  type="module"
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+  nomodule
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+></script>
+<script src="editarperfil.js"></script>
+</body>
+</html> 

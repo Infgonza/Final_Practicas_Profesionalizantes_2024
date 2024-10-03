@@ -15,16 +15,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
+            .csrf().disable() // Deshabilitar CSRF para pruebas
             .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/api/v1/auth/**").permitAll()
-                .anyRequest().authenticated()
+                .requestMatchers("/api/v1/auth/registro").permitAll() // Permitir acceso al registro sin autenticación
+                .anyRequest().authenticated() // Todas las demás solicitudes requieren autenticación
             );
         return http.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(); // Configuración del codificador de contraseñas
     }
 }
