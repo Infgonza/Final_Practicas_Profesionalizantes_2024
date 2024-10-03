@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/api/v1/auth/registro', {
+            const response = await fetch('api/v1/auth/registro', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
