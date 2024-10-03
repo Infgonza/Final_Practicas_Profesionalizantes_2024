@@ -20,13 +20,13 @@
             <div class="form login">
                 <div class="form-content">
                     <header>Iniciar sesión</header>
-                    <form action="#">
+                    <form id="loginForm">
                         <div class="field input-field">
-                            <input type="email" placeholder="Email" class="input">
+                            <input type="email" placeholder="Email" class="input" id="loginEmail" required>
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Contraseña" class="password">
+                            <input type="password" placeholder="Contraseña" class="password" id="loginPassword" required>
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
 
@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="field button-field">
-                            <button>Iniciar</button>
+                            <button type="submit">Iniciar</button>
                         </div>
                     </form>
 
@@ -66,22 +66,24 @@
             <div class="form signup">
                 <div class="form-content">
                     <header>Registrarse</header>
-                    <form action="#">
+                    <form id="signupForm">
+
                         <div class="field input-field">
-                            <input type="email" placeholder="Email" class="input">
+                            <input type="text" placeholder="Nombre de usuario" class="input" id="signupUsername" required >
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Crear Contraseña" class="password">
+                            <input type="email" placeholder="Email" class="input" id="signupEmail" required >
                         </div>
 
+
                         <div class="field input-field">
-                            <input type="password" placeholder="Confirmar Contraseña" class="password">
+                            <input type="password" placeholder="Contraseña" class="password" id="signupPassword" required >
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
 
                         <div class="field button-field">
-                            <button>Registrarse</button>
+                            <button type="submit">Registrarse</button>
                         </div>
                     </form>
 
@@ -108,6 +110,6 @@
         </section>
 
         <!-- JavaScript -->
-        <script src="script.js"></script>
+        <script src="user.js"></script>
     </body>
 </html>
