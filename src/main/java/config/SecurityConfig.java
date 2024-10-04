@@ -17,7 +17,7 @@ public class SecurityConfig {
         
         return httpSecurity
         		.authorizeHttpRequests()
-        			.requestMatchers("/**.html", "/**.css/", "http://localhost:8080/api/v1/auth/registro").permitAll()
+        			.requestMatchers("/**.html", "/**.css/", "http://localhost:8080/api/v1/auth/registro", "/productos").permitAll()
         			.requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**", "/imagenes/**").permitAll()
         			.anyRequest().authenticated()
         		.and()
