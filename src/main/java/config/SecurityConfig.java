@@ -13,14 +13,17 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf().disable() // Deshabilitar CSRF para pruebas
-            .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/api/v1/auth/registro").permitAll() // Permitir acceso al registro sin autenticación
-                .anyRequest().authenticated() // Todas las demás solicitudes requieren autenticación
-            );
-        return http.build();
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        
+        return httpSecurity
+        		.authorizeHttpRequests()
+        			.requestMatchers("/**.html", "/**.css/", "http://localhost:8080/api/v1/auth/registro").permitAll()
+        			.requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**", "/imagenes/**").permitAll()
+        			.anyRequest().authenticated()
+        		.and()
+        		.formLogin().permitAll()
+        		.and()
+        		.build();
     }
 
     @Bean

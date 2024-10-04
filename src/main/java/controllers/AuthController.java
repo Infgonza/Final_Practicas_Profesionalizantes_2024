@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,11 @@ import services.UsuarioServiceImpl;
 @CrossOrigin(origins = "*")
 @RequestMapping(path = "api/v1/auth")
 public class AuthController extends BaseControllerImpl<Usuario, UsuarioServiceImpl> {
+	
+	@GetMapping("/auth")
+    public String mostrarLoginRegistro() {
+        return "login"; 
+    }
 
     @PostMapping("registro")
     public ResponseEntity<?> registro(@RequestBody RegistroDTO registroDTO) {

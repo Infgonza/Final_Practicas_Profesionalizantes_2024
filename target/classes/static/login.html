@@ -8,7 +8,7 @@
         <title> Iniciar sesión </title>
         <link rel="icon" type="image/x-icon" href="imagenes/icono2.png" />
         <!-- CSS -->
-        <link rel="stylesheet" href="/Front/login.css">
+        <link rel="stylesheet" href="css/login.css">
                 
         <!-- Boxicons CSS -->
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
@@ -66,7 +66,7 @@
             <div class="form signup">
                 <div class="form-content">
                     <header>Registrarse</header>
-                    <form id="signupForm">
+                    <form action="/api/v1/auth/registro" method="POST" id="signupForm">
 
                         <div class="field input-field">
                             <input type="text" placeholder="Nombre de usuario" class="input" id="signupUsername" required >
@@ -110,6 +110,6 @@
         </section>
 
         <!-- JavaScript -->
-        <script src="user.js"></script>
+        <script src="js/user.js"></script>
     </body>
 </html>
