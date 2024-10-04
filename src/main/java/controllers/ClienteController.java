@@ -25,7 +25,6 @@ public class ClienteController extends BaseControllerImpl<Cliente, ClienteServic
 	@Autowired
 	private ClienteServiceImpl clienteService;
 	
-	
 	@PostMapping("/registro")
     public ResponseEntity<?> registrarCliente(@RequestBody ClienteRegistroDTO registroDTO) {
         try {

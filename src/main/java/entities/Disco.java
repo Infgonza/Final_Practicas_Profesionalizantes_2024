@@ -31,24 +31,19 @@ public class Disco extends Producto implements Serializable{
 	private String genero;
 	@Column(name="fecha_lanzamiento")
 	private String fechaLanzamiento;
-	
-	
-
-	public Disco(Long idProducto, String nombre, String descripción, double precio, int stock,
+	public Disco(Long idProducto, String nombre, String descripción, double precio, int stock, String imagen,
 			List<DetalleCompra> detallesCompra, List<DetalleFactura> detallesFactura, List<CarritoDeCompras> carrito) {
-		super(idProducto, nombre, descripción, precio, stock, detallesCompra, detallesFactura, carrito);
+		super(idProducto, nombre, descripción, precio, stock, imagen, detallesCompra, detallesFactura, carrito);
 	}
-
-	public Disco(Long idProducto, String nombre, String descripción, double precio, int stock,
+	public Disco(Long idProducto, String nombre, String descripción, double precio, int stock, String imagen,
 			List<DetalleCompra> detallesCompra, List<DetalleFactura> detallesFactura, List<CarritoDeCompras> carrito,
 			String artista, String genero, String fechaLanzamiento) {
-		super(idProducto, nombre, descripción, precio, stock, detallesCompra, detallesFactura, carrito);
+		super(idProducto, nombre, descripción, precio, stock, imagen, detallesCompra, detallesFactura, carrito);
 		this.artista = artista;
 		this.genero = genero;
 		this.fechaLanzamiento = fechaLanzamiento;
 	}
 	
-
-
+	
 	
 }

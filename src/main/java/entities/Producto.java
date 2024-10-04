@@ -54,6 +54,9 @@ public class Producto implements Serializable{
 	@Column(name="stock")
 	private int stock;
 	
+	@Column(name="imagen_url")
+	private String imagenUrl;
+	
 	// RELACIONES
 	
 	@OneToMany(mappedBy = "producto")
