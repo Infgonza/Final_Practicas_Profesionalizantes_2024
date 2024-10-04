@@ -14,20 +14,20 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        
         return httpSecurity
-        		.authorizeHttpRequests()
-        			.requestMatchers("/**.html", "/**.css/", "http://localhost:8080/api/v1/auth/registro", "/productos").permitAll()
-        			.requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**", "/imagenes/**").permitAll()
-        			.anyRequest().authenticated()
-        		.and()
-        		.formLogin().permitAll()
-        		.and()
-        		.build();
+            .csrf().disable()  // Deshabilitar CSRF para pruebas de API
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/**.html", "/api/v1/auth/**", "/productos").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**", "/imagenes/**").permitAll()
+                .anyRequest().authenticated()
+            )
+            .formLogin().disable()  // Deshabilitar el formulario de login por defecto
+            .httpBasic().disable()  // Deshabilitar autenticación básica
+            .build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Configuración del codificador de contraseñas
+        return new BCryptPasswordEncoder();
     }
 }

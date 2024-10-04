@@ -22,10 +22,7 @@ import services.UsuarioServiceImpl;
 @RequestMapping(path = "api/v1/auth")
 public class AuthController extends BaseControllerImpl<Usuario, UsuarioServiceImpl> {
 	
-	@GetMapping("/auth")
-    public String mostrarLoginRegistro() {
-        return "login"; 
-    }
+	
 
     @PostMapping("registro")
     public ResponseEntity<?> registro(@RequestBody RegistroDTO registroDTO) {

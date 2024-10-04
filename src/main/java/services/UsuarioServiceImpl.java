@@ -43,6 +43,7 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario, Long> implement
                 .build();
 		return usuarioRepository.save(nuevoUsuario);		
 	}
+	
 	public String login(LoginDTO loginDTO) throws Exception {
         Usuario usuario = usuarioRepository.findByEmail(loginDTO.getEmail())
                 .orElseThrow(() -> new Exception("Usuario no encontrado"));
