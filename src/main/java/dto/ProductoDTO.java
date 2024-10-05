@@ -2,22 +2,27 @@ package dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
 public class ProductoDTO {
+	
+	@JsonIgnore
+    private MultipartFile imagenUrl;
 
 	// Datos producto
 	private String nombre;
 	private String descripcion;
 	private double precio;
 	private int stock;
-	private MultipartFile imagenUrl;
+	
 	
 	private String tipo; // Disco o Vinilo
 	
 	// Datos Disco o Vinilo
-	private String Artista;
+	private String artista;
 	private String genero;
 	private String fechaLanzamiento;
 	

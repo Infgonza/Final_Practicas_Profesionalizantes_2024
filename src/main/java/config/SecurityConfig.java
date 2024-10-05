@@ -17,7 +17,7 @@ public class SecurityConfig {
         return httpSecurity
             .csrf().disable()  // Deshabilitar CSRF para pruebas de API
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/**.html", "/api/v1/auth/**", "/productos").permitAll()
+                .requestMatchers("/**.html", "/api/v1/auth/**", "/api/v1/productos/**", "/productos").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**", "/imagenes/**").permitAll()
                 .anyRequest().authenticated()
             )
