@@ -68,6 +68,5 @@ public class Producto implements Serializable{
 	@ManyToMany(mappedBy="productos")
 	private List<CarritoDeCompras> carrito = new ArrayList<CarritoDeCompras>();
 
-	
 
 }
