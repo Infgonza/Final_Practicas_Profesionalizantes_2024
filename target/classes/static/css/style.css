@@ -110,9 +110,13 @@ nav ul li a.active {
     fill: white;
 }
 
-
+.user{
+	position: relative;
+    display: inline-block;
+}
 
 .user button{
+	position: relative;
     outline: none;
     max-width: 100px;
     border: none;
@@ -121,7 +125,7 @@ nav ul li a.active {
     border-radius: 50%;
     color: rgb(40, 0, 0);
     cursor: pointer;
-    display: flex;
+    display: inline-block;
     align-items: center;
     justify-content: center;  
     background-color: transparent;
@@ -130,6 +134,34 @@ nav ul li a.active {
   outline: none;
     color: #ff7e5f;
 }
+
+.user-menu {
+	display: none; /* Ocultar el menú por defecto */
+    position: absolute; /* Posición absoluta */
+    padding: 5px;
+    top: 100%;
+    width: 110px;
+    left: 40%; 
+    transform: translateX(-40%);
+    background-color:rgb(0, 0, 0); 
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 4px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    z-index: 1; 
+}
+.user-menu a{
+	display: block;
+    text-decoration: none; 
+    color: rgb(255, 255, 255); 
+    font-size: 13px;
+   
+}
+.user-menu a:hover{
+	text-decoration: underline;
+}
+
+
+
 
 .cart button{
   background-color:#fff9f0;

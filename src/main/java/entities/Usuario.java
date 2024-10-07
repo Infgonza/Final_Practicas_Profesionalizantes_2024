@@ -3,7 +3,13 @@ package entities;
 
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -31,7 +37,7 @@ import lombok.ToString;
 @AllArgsConstructor @NoArgsConstructor
 @Entity
 @Table(name = "usuarios")
-public class Usuario implements Serializable {
+public class Usuario implements UserDetails, Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -61,6 +67,42 @@ public class Usuario implements Serializable {
 	@ManyToMany(fetch = FetchType.EAGER, targetEntity = RoleEntity.class, cascade = CascadeType.PERSIST)
 	@JoinTable(name="usuarios_roles", joinColumns = @JoinColumn(name="usuario_id"), inverseJoinColumns = @JoinColumn(name="rol_id"))
 	private Set<RoleEntity> roles;
+
+	@Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream()
+            .map(role -> new SimpleGrantedAuthority(role.getNombreRol().name()))
+            .collect(Collectors.toList());
+    }
+
+	 @Override
+	    public String getPassword() {
+	        return this.contrasenia;
+	    }
+
+	    @Override
+	    public String getUsername() {
+	        return this.nombreUsuario;
+	    }
+	    @Override
+	    public boolean isAccountNonExpired() {
+	        return true; // Personaliza según tus necesidades
+	    }
+
+	    @Override
+	    public boolean isAccountNonLocked() {
+	        return true; // Personaliza según tus necesidades
+	    }
+
+	    @Override
+	    public boolean isCredentialsNonExpired() {
+	        return true; // Personaliza según tus necesidades
+	    }
+
+	    @Override
+	    public boolean isEnabled() {
+	        return true; // Personaliza según tus necesidades
+	    }
 	
 
 }

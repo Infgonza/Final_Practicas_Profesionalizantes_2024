@@ -22,7 +22,7 @@
          <nav>
             <ul>
                 <li><a href="index.html" class="active">Inicio</a></li>
-                <li><a href="productos.html">Productos</a></li>
+                <li><a href=				"/productos">Productos</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
                 
             </ul>
@@ -33,13 +33,14 @@
             <button><i class="fas fa-search"></i></button>
          </div>
 
-         <div class="user" >
-             <a href="login.html">
-              <button ><i class="fa fa-user fa-lg" aria-hidden="true" ></i></button>
-             </a>
-            
-         </div>
-
+		 <div class="user">
+		 		     <button id="userIcon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></button>
+		 		     <div id="userMenu" class="user-menu">
+		 		         <a id="profileLink" href="perfil.html" style="display: none;">Perfil</a>
+		 		         <a id="logoutLink" href="#" style="display: none;">Cerrar sesión</a>
+		 		         <a id="loginLink" href="login.html" style="display: none;">Ingresar</a>
+		 		     </div>
+		 		 </div>
          <div class="cart">
           <a href="carrito.html">
               <button><i class="fa fa-shopping-cart fa-lg " aria-hidden="true" ></i></button>
@@ -97,7 +98,7 @@
 <footer class="footer">
   <ul class="logo">
     
-    <img src="/Front/imagenes/logofooter.png">
+    <img src="imagenes/logofooter.png">
     
   </ul>
   <ul class="social-icon">
@@ -157,5 +158,8 @@
   src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
 ></script>
 <script src="js/editarperfil.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/sesion.js"></script>
 </body>
+
 </html> 
