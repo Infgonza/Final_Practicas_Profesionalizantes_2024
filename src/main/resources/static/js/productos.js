@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     traerProductos();
+	agregarAlCarrito();
 });
 
 async function traerProductos() {
@@ -38,3 +39,8 @@ async function traerProductos() {
     }
 }
 
+
+function agregarAlCarrito(idProducto) {
+
+    console.log(`Producto ${idProducto} añadido al carrito`);
+}
