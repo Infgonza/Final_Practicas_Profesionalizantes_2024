@@ -39,6 +39,7 @@ public class SecurityConfig   {
             .authorizeHttpRequests()
             .requestMatchers("/**.html", "/api/v1/auth/**", "/api/v1/productos/**", "/productos").permitAll()
             .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**", "/imagenes/**").permitAll()
+            .requestMatchers("/subirproductos.html").hasRole("Administrador")
             .anyRequest().authenticated()
             .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

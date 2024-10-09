@@ -2,7 +2,6 @@ package services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import dto.ProductoDTO;
 import entities.Disco;
@@ -11,7 +10,6 @@ import entities.Vinilo;
 import jakarta.transaction.Transactional;
 import repositories.BaseRepository;
 import repositories.DiscoRepository;
-import repositories.ProductoRepository;
 import repositories.ViniloRepository;
 
 @Service

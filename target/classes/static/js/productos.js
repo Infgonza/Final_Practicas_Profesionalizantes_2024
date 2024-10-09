@@ -1,6 +1,9 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     traerProductos();
+    
 });
+
 
 async function traerProductos() {
     try {
