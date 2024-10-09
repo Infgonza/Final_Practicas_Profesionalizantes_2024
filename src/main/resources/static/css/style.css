@@ -300,7 +300,7 @@ nav ul li a.active {
     font-size: 20px;
 }
 
-/*PODUCTOS*/  /*PODUCTOS*/  /*PODUCTOS*/  /*PODUCTOS*/  /*PODUCTOS*/  /*PODUCTOS*/  /*PODUCTOS*/  /*PODUCTOS*/  /*PODUCTOS*/  /*PODUCTOS*/  /*PODUCTOS*/  /*PODUCTOS*/  /*PODUCTOS*/  /*PODUCTOS*/  
+/*PRODUCTOS*/  /*PRODUCTOS*/ /*PRODUCTOS*/ /*PRODUCTOS*/ /*PRODUCTOS*/ /*PRODUCTOS*/ 
 
 .product-card {
   flex: 1 1 calc(25% - 16px); /* 25% del ancho menos 16px de margen */
@@ -477,8 +477,9 @@ align-items: center;
   
   .product-container {
     display: flex;
-    justify-content: start;
-    align-items: start;
+    justify-content: center;
+    align-items: center;
+    
     gap: 40px;
   }
 
@@ -502,7 +503,7 @@ align-items: center;
     width: 670px;
     flex-shrink: 0;
     border-radius: 4px;
-    height: 520px;
+    height: 420px;
     object-fit:contain;
   }
   

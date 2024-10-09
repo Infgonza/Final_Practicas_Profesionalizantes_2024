@@ -23,7 +23,7 @@
          <nav>
             <ul>
                 <li><a href="index.html" class="active">Inicio</a></li>
-                <li><a href="productos.html">Productos</a></li>
+                <li><a href="/productos">Productos</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
                 
             </ul>
@@ -34,12 +34,14 @@
             <button><i class="fas fa-search"></i></button>
          </div>
 
-         <div class="user" >
-             <a href="login.html">
-              <button ><i class="fa fa-user fa-lg" aria-hidden="true" ></i></button>
-             </a>
-            
-         </div>
+		 <div class="user">
+		 		 		     <button id="userIcon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></button>
+		 		 		     <div id="userMenu" class="user-menu">
+		 		 		         <a id="profileLink" href="perfil.html" style="display: none;">Perfil</a>
+		 		 		         <a id="logoutLink" href="#" style="display: none;">Cerrar sesión</a>
+		 		 		         <a id="loginLink" href="login.html" style="display: none;">Ingresar</a>
+		 		 		     </div>
+		 		 		 </div>
 
          <div class="cart">
           <a href="carrito.html">
@@ -62,22 +64,20 @@
     <section class="product-container">
         <!-- left side -->
         <div class="img-card">
-            <img src="/Front/imagenes/Trench.jpg" alt="" id="featured-image">
-            <!-- small img -->
-            <div class="small-Card">
-              <img src="imagenes/Trench.jpg" alt="" class="small-Img">
-                <img src="imagenes/trenchback.jpeg" alt="" class="small-Img">
-                <img src="imagenes/coleccion.jpg" alt="" class="small-Img">
-                
+			<img src="" alt="Imagen del producto" id="featured-image">
+  
             </div>
         </div>
         <!-- Right side -->
         <div class="product-info">
-            <h3>NOMBRE VINILO</h3>
-            <h5>$21.000</h5>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa accusantium, aspernatur provident beatae corporis veniam atque facilis, consequuntur assumenda, vitae dignissimos iste exercitationem dolor eveniet alias eos ullam nesciunt voluptatum.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore accusamus natus dolorum. Quaerat nulla quod doloremque, officia quis provident amet adipisci unde esse iure delectus, maxime inventore optio fuga nisi?</p>
-
+            <h5 id="nombre-producto">NOMBRE VINILO</h5>
+            <h3 id="precio-producto">precio</h3>
+			<p id="artista"></p>
+			<p id="genero"></p>
+			<p id="fecha"></p>
+			<p id="descripcion"></p>
+            
+            
             <div class="value">
                 <p>Version:</p>
                 <select name="Version" id="version" class="size-option">
@@ -87,7 +87,7 @@
             </div>
 
             <div class="quantity">
-                <input type="number" value="1" min="1">
+                <input type="number" value="1" min="1" max="5">
                 <button>Agregar al carrito</button>
             </div>
 
@@ -96,7 +96,7 @@
     </section>
 
     <!-- script tags -->
-    <script src="script.js"></script>
+    
     <footer class="footer">
         <ul class="logo">
           
@@ -150,7 +150,9 @@
         </ul>
         <p class="text">Copyright 2024 | Groove Records®</p>
     </footer>
-    
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/sesion.js"></script>
+	<script type="text/javascript" src="js/detallesproducto.js"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"

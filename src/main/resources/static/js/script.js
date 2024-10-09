@@ -1,6 +1,6 @@
 
 
-let featuedImg = document.getElementById('featured-image');
+/*let featuedImg = document.getElementById('featured-image');
 let smallImgs = document.getElementsByClassName('small-Img');
 
 smallImgs[0].addEventListener('click', () => {
@@ -42,7 +42,7 @@ smallImgs[4].addEventListener('click', () => {
     smallImgs[2].classList.remove('sm-card')
     smallImgs[3].classList.remove('sm-card')
     smallImgs[4].classList.add('sm-card')
-})
+})*/
 
 
 
