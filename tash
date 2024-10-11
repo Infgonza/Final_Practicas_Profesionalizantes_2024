@@ -1,0 +1,204 @@
+[33mcommit c6afdebffbb49c8459a922313e0d199dabf98e59[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: jez-7 <juanemanuelzamora@gmail.com>
+Date:   Wed Oct 9 15:34:21 2024 -0300
+
+    pagina para ver cada producto en especifico
+
+[33mcommit 1b88dd932bbdef2581ed7dd1c48949c11ace3198[m
+Merge: 34550c0 3964b14
+Author: jez-7 <juanemanuelzamora@gmail.com>
+Date:   Tue Oct 8 23:18:09 2024 -0300
+
+    commit de prueba
+
+[33mcommit 34550c0d53dc3a376dced1bb86aa40db129d9afe[m
+Author: jez-7 <juanemanuelzamora@gmail.com>
+Date:   Tue Oct 8 23:11:01 2024 -0300
+
+    Front para agregar productos
+
+[33mcommit 3964b14996dd96c0a612940cc4d1b24948bf6e4b[m
+Author: Gonzalo <infantegonzalo.mdz@gmail.com>
+Date:   Mon Oct 7 18:12:47 2024 -0300
+
+    Modificando S3 service
+
+[33mcommit 7aebbaddad5865ec9e5312cf6155f989f21bc134[m
+Merge: 52125fb 5d51b97
+Author: jez-7 <juanemanuelzamora@gmail.com>
+Date:   Mon Oct 7 17:35:08 2024 -0300
+
+    login terminado
+
+[33mcommit 52125fb6d96badd46b4c3935b69b11012a248df3[m
+Author: jez-7 <juanemanuelzamora@gmail.com>
+Date:   Mon Oct 7 16:59:42 2024 -0300
+
+    Login terminado
+
+[33mcommit 5d51b97137a81974849f5a6d7d3174d62a3beeeb[m
+Author: Gonzalo <infantegonzalo.mdz@gmail.com>
+Date:   Sun Oct 6 21:07:09 2024 -0300
+
+    js para traer productos al html desde la db y la imagen de s3
+
+[33mcommit 138250b4176405aaeea65bfb83aeecfc047503fb[m
+Author: jez-7 <juanemanuelzamora@gmail.com>
+Date:   Sat Oct 5 18:04:55 2024 -0300
+
+    Funcion para agregar productos terminada
+
+[33mcommit 729429e1671b3be3050d96c8b1065baf76e2c71d[m
+Author: Gonzalo <infantegonzalo.mdz@gmail.com>
+Date:   Fri Oct 4 20:41:51 2024 -0300
+
+    Implementando S3 para poder crear Productos y agregarle imagenes
+
+[33mcommit 3bd31975bfd1f57094d8d75f5497dcccf15f6f0a[m
+Author: jez-7 <juanemanuelzamora@gmail.com>
+Date:   Fri Oct 4 12:36:49 2024 -0300
+
+    Registro terminado
+
+[33mcommit 83cfa9406528cfc06fb05dd5c52b9f0931881d54[m
+Author: jez-7 <juanemanuelzamora@gmail.com>
+Date:   Fri Oct 4 12:03:20 2024 -0300
+
+    Integracion del front
+
+[33mcommit a6abae10e04fb49cf4412de4b9004e0c819e8bc5[m
+Author: jez-7 <juanemanuelzamora@gmail.com>
+Date:   Fri Oct 4 09:50:36 2024 -0300
+
+    Cambios en security
+
+[33mcommit ae380da7132edd9b55b76c7895318a8f16a601a1[m
+Author: jez-7 <juanemanuelzamora@gmail.com>
+Date:   Thu Oct 3 20:14:59 2024 -0300
+
+    Arreglando integracion de Front
+
+[33mcommit f4bc484371781b43803192b4d89ec97bf148f3c8[m
+Author: jez-7 <juanemanuelzamora@gmail.com>
+Date:   Wed Oct 2 23:03:50 2024 -0300
+
+    Funcion de registro terminada
+
+[33mcommit f6263fd427a7239cfaa211407eab253128a40595[m[33m ([m[1;32mfeature/login-system[m[33m)[m
+Author: jez-7 <juanemanuelzamora@gmail.com>
+Date:   Wed Oct 2 22:59:24 2024 -0300
+
+    Registro terminado
+
+[33mcommit 3f57ad28c6548dedc2f07d14136cbdcb7d12a52e[m
+Author: jez-7 <juanemanuelzamora@gmail.com>
+Date:   Wed Oct 2 22:54:57 2024 -0300
+
+    Funcion de registro terminada
+
+[33mcommit a651a79afdddfd4091c7c4189e97340d622076f3[m[33m ([m[1;31morigin/feature/login-system[m[33m)[m
+Author: jez-7 <juanemanuelzamora@gmail.com>
+Date:   Tue Oct 1 14:52:36 2024 -0300
+
+    Login y registro
+
+[33mcommit d3c62fb785a44310e46785a12ee2ed6e7699642b[m
+Author: Gonzalo <infantegonzalo.mdz@gmail.com>
+Date:   Tue Oct 1 00:05:15 2024 -0300
+
+    Crud de todas las entidades restantes, con sus repositories, sus services y sus controllers
+
+[33mcommit b69b7286b73dfb27a37e8e253c8335b2733ab1d8[m
+Author: Gonzalo <infantegonzalo.mdz@gmail.com>
+Date:   Mon Sep 30 18:19:13 2024 -0300
+
+    Añadiendo todos los repository faltantes
+
+[33mcommit 52acec573fa08d519802803c56c0bb6a2f617de8[m
+Author: Gonzalo <infantegonzalo.mdz@gmail.com>
+Date:   Sat Sep 28 15:48:44 2024 -0300
+
+    Reapply "Creacion de clases genericas y registro de Cliente con Domicilio y usuario desde postman"
+    
+    This reverts commit cc83b9d84d7c74037284477fea935ea6a5719df4.
+
+[33mcommit cc83b9d84d7c74037284477fea935ea6a5719df4[m
+Author: Gonzalo <infantegonzalo.mdz@gmail.com>
+Date:   Sat Sep 28 15:32:41 2024 -0300
+
+    Revert "Creacion de clases genericas y registro de Cliente con Domicilio y usuario desde postman"
+    
+    This reverts commit f54ac23ec5c24f66c6af60a97d36f54177893735.
+
+[33mcommit f54ac23ec5c24f66c6af60a97d36f54177893735[m
+Author: Gonzalo <infantegonzalo.mdz@gmail.com>
+Date:   Sat Sep 28 15:15:09 2024 -0300
+
+    Creacion de clases genericas y registro de Cliente con Domicilio y usuario desde postman
+
+[33mcommit 49a4f150c5e96b2bad2085ff036285a1e2a4a6de[m
+Author: Gonzalo <infantegonzalo.mdz@gmail.com>
+Date:   Fri Sep 27 21:33:08 2024 -0300
+
+    Crud Domicilio y Usuario
+
+[33mcommit f98e3bc89e828ddbef5d1552a05a5126f466d007[m
+Author: Gonzalo <infantegonzalo.mdz@gmail.com>
+Date:   Fri Sep 27 17:42:44 2024 -0300
+
+    Modificacion de dependencias, y creacion del crud de Cliente
+
+[33mcommit 3edc155c10291aaeb997d3a2043a00a67fac14a4[m
+Author: emanuel zamora <137125466+jez-7@users.noreply.github.com>
+Date:   Fri Sep 27 13:46:16 2024 -0300
+
+    Segundo Commit
+
+[33mcommit 6855dd7e5da25e4ef6015c8ff33b7bf64cfa1314[m
+Author: emanuel zamora <137125466+jez-7@users.noreply.github.com>
+Date:   Fri Sep 27 13:44:54 2024 -0300
+
+    Delete Front directory
+
+[33mcommit 4fb1b9c83ac60a14c40148019c32c39bbbac16a1[m
+Merge: 92242dd a9dd5bb
+Author: Gonzalo <infantegonzalo.mdz@gmail.com>
+Date:   Tue Sep 24 17:18:42 2024 -0300
+
+    Merge branch 'master' of https://github.com/Infgonza/Final_Practicas_Profecionalizantes
+
+[33mcommit 92242dd993e07b8728bd6cd6fd7f6be36ce1be1f[m
+Author: Gonzalo <infantegonzalo.mdz@gmail.com>
+Date:   Tue Sep 24 17:12:36 2024 -0300
+
+    Añadiendo relaciones faltantes
+
+[33mcommit a9dd5bb187a3aae96c02cec0de5321f5b6a5cda6[m
+Author: emanuel zamora <137125466+jez-7@users.noreply.github.com>
+Date:   Tue Sep 24 11:21:05 2024 -0300
+
+    Add files via upload
+
+[33mcommit abc4e0a7e1bcec90da3aeb18f4819a2f3e325bc0[m
+Author: emanuel zamora <137125466+jez-7@users.noreply.github.com>
+Date:   Tue Sep 24 11:20:15 2024 -0300
+
+    Delete Front/imagenes directory
+
+[33mcommit e7004262fc981c3248f3e31c03c7bed5e5c571d1[m
+Author: emanuel zamora <137125466+jez-7@users.noreply.github.com>
+Date:   Tue Sep 24 11:18:31 2024 -0300
+
+    Primer Commit
+
+[33mcommit c446f3c7467b27349662802192912fc3c1f5f9c9[m
+Author: Gonzalo <infantegonzalo.mdz@gmail.com>
+Date:   Wed Sep 4 15:28:06 2024 +0200
+
+    Creacion de las relaciones entre Cliente y Usuario y Cliente y Domicilio
+
+[33mcommit 032f9e7b69ef06c7b20cccefd37edba1e387fc68[m
+Author: Infgonza <infantegonzalo.mdz@gmail.com>
+Date:   Fri Aug 30 19:04:36 2024 -0300
+
+    Creacion de las Entidades
