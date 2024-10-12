@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="icon" type="image/x-icon" href="imagenes/icono2.png" />
+	
 
     <title>Groove Records</title>
 </head>
@@ -63,7 +64,7 @@
 	<div class="content" role="main">
 	    <div class="		form-contacto">
 	        <h2>Subir Nuevo Producto</h2>
-	        <form id="subir-producto" enctype="multipart/form-data">
+	        <form id="subir-producto" enctype="multipart/form-data" method="POST">
 	            <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
 	            <textarea id="descripcion" name="descripcion" placeholder="Descripción" required></textarea>
 	            <input type="number" id="precio" name="precio" placeholder="Precio" step="0.01" required>
@@ -141,6 +142,7 @@
   <p class="text">Copyright 2024 | Groove Records®</p>
 </footer>
 
+
 <script
   type="module"
   src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
@@ -150,7 +152,57 @@
   src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
 ></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="js/sesion.js"></script>
-<script src="js/subirproductos.js"></script>
+	<script src="js/sesion.js"></script>
+	<script src="js/auth.js"></script>
+	<script>
+	        function mostrarContenido() {
+	            const contentElement = document.getElementById('content');
+	            if (contentElement) {
+	                contentElement.style.display = 'block';
+	            } else {
+	                console.error('Elemento "content" no encontrado');
+	            }
+	        }
+	
+	        function verificarPermisos() {
+	            const token = localStorage.getItem('token');
+	            if (!token) {
+	                alert('No hay sesión activa. Redirigiendo al inicio de sesión.');
+	                window.location.href = 'login.html';
+	                return;
+	            }
+	
+	            fetch('/api/v1/productos/verificarPermisoSubir', {
+	                method: 'GET',
+	                headers: {
+	                    'Authorization': `Bearer ${token}`
+	                }
+	            })
+	            .then(response => {
+	                if (response.ok) {
+	                    mostrarContenido();
+	                } else if (response.status === 403) {
+	                    throw new Error('No tienes permiso para acceder a esta página.');
+	                } else {
+	                    throw new Error('Ha ocurrido un error. Por favor, intenta de nuevo más tarde.');
+	                }
+	            })
+	            .catch(error => {
+	                console.error('Error:', error);
+	                alert(error.message);
+	                window.location.href = 'index.html';
+	            });
+	        }
+	
+	        // Esperar a que el DOM esté completamente cargado
+	        if (document.readyState === 'loading') {
+	            document.addEventListener('DOMContentLoaded', verificarPermisos);
+	        } else {
+	            verificarPermisos();
+	        }
+	    </script>
+	<script src="js/subirproductos.js"></script>
+
+
 </body>
 </html> 

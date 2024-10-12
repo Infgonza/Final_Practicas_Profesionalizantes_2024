@@ -86,22 +86,22 @@ public class Usuario implements UserDetails, Serializable {
 	    }
 	    @Override
 	    public boolean isAccountNonExpired() {
-	        return true; // Personaliza según tus necesidades
+	        return true;
 	    }
 
 	    @Override
 	    public boolean isAccountNonLocked() {
-	        return true; // Personaliza según tus necesidades
+	        return true; 
 	    }
 
 	    @Override
 	    public boolean isCredentialsNonExpired() {
-	        return true; // Personaliza según tus necesidades
+	        return true; 
 	    }
 
 	    @Override
 	    public boolean isEnabled() {
-	        return true; // Personaliza según tus necesidades
+	        return true; 
 	    }
 	
 

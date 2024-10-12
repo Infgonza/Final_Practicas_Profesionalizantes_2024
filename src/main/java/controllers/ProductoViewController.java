@@ -1,15 +1,21 @@
 package controllers;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/productos")
 public class ProductoViewController {
 
-    @GetMapping
+   
+	/*@GetMapping("/subirproductos")
+    public String mostrarFormularioSubirProductos(@AuthenticationPrincipal Object principal) {
+        if (principal == null) {
+            return "redirect:/login"; // Redirige a login si no hay sesión
+        }
+        return "subirproductos"; 
+    }*/
+
+    @GetMapping("/productos")
     public String productos() {
-        return "productos"; 
+        return "productos"; // Renderiza la página Thymeleaf
     }
 }

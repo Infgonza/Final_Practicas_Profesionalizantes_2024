@@ -22,11 +22,11 @@
                     <header>Iniciar sesión</header>
                     <form id="loginForm">
                         <div class="field input-field">
-                            <input type="text" placeholder="Usuario" class="input" id="loginUser" required>
+                            <input 	autocomplete="off"type="text" placeholder="Usuario" class="input" id="loginUser" required>
                         </div>
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Contraseña" class="password" id="loginPassword" required>
+                            <input autocomplete="new-password" type="password" placeholder="Contraseña" class="password" id="loginPassword" required>
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
 
@@ -69,16 +69,16 @@
                     <form action="/api/v1/auth/registro" method="POST" id="signupForm">
 
                         <div class="field input-field">
-                            <input type="text" placeholder="Nombre de usuario" class="input" id="signupUsername" required >
+                            <input type="text" placeholder="Nombre de usuario" class="input" id="signupUsername" 							autocomplete="off" required >
                         </div>
 
                         <div class="field input-field">
-                            <input type="email" placeholder="Email" class="input" id="signupEmail" required >
+                            <input type="email" placeholder="Email" class="input" id="signupEmail" 							autocomplete="new-password"required >
                         </div>
 
 
                         <div class="field input-field">
-                            <input type="password" placeholder="Contraseña" class="password" id="signupPassword" required >
+                            <input type="password" placeholder="Contraseña" class="password" id="signupPassword" 							autocomplete="new-password"required >
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
 

@@ -24,26 +24,31 @@ public class SecurityConfig   {
     private  JwtService jwtService;
     @Autowired
     private CustomUserDetailsService userDetailsService;
-
+    
    
 
+    
+
+
     @Bean
-    public JwtAuthFilter jwtAuthFilter() {
+    JwtAuthFilter jwtAuthFilter() {
         return new JwtAuthFilter(jwtService, userDetailsService);
     }
 
+
+
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-        .csrf().disable()
-            .authorizeHttpRequests()
-            .requestMatchers("/**.html", "/api/v1/auth/**", "/api/v1/productos/**", "/productos").permitAll()
-            .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**", "/imagenes/**").permitAll()
-            .requestMatchers("/subirproductos.html").hasRole("Administrador")
-            .anyRequest().authenticated()
-            .and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(requests -> requests
+                .requestMatchers("/api/v1/auth/**").permitAll()
+                .requestMatchers("/subirproductos.html").permitAll() // Permitir acceso a la página
+                .requestMatchers("/api/v1/productos/verificarPermisoSubir").hasAuthority("Administrador") // Proteger la API
+                .requestMatchers("/**.html", "/api/v1/productos/**", "/productos").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**", "/imagenes/**").permitAll()
+                .anyRequest().authenticated())
+            .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
@@ -52,14 +57,15 @@ public class SecurityConfig   {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
-    
+
+
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+    AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
-    
+
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

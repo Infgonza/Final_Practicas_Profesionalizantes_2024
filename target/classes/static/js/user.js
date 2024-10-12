@@ -72,14 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     
             if (response.ok) {
+                window.location.reload();
+               
                 
-                window.location.href = 'index.html'; // Redirigir al index
-            } else {
-                const errorData = await response.json();
-                alert('Error: ' + errorData.error); // Mostrar el error del backend
             }
         } catch (error) {
-            alert('Ocurrió un error: ' + error.message); // Manejo de errores
+            
         }
 
         

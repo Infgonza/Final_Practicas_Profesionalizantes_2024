@@ -37,7 +37,7 @@
 		     <button id="userIcon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></button>
 		     <div id="userMenu" class="user-menu">
 		         <a id="profileLink" href="perfil.html" style="display: none;">Perfil</a>
-				 <a id="adminPanel" href="subirproductos.html" style="display: none;">Admin panel</a>
+				 <a id="adminPanel" style="display: none;" href="#" onclick="navigateToSubirProductos(); return false;">Admin panel</a>
 		         <a id="logoutLink" href="#" style="display: none;">Cerrar sesión</a>
 		         <a id="loginLink" href="login.html" style="display: none;">Ingresar</a>
 		     </div>
@@ -154,7 +154,8 @@
   </ul>
   <p class="text">Copyright 2024 | Groove Records®</p>
 </footer>
-
+<script src="js/auth.js"></script>
+<script src="js/auth-navegation.js"></script>
 <script
   type="module"
   src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
@@ -165,5 +166,6 @@
 ></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/sesion.js"></script>
+
 </body>
 </html> 
