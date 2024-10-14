@@ -30,13 +30,13 @@ public class Vinilo extends Producto implements Serializable{
 
 	public Vinilo(Long idProducto, String nombre, String descripción, double precio, int stock, String imagen,
 			List<DetalleCompra> detallesCompra, List<DetalleFactura> detallesFactura, List<CarritoDeCompras> carrito) {
-		super(idProducto, nombre, descripción, precio, stock, imagen, detallesCompra, detallesFactura, carrito);
+		super();
 	}
 
 	public Vinilo(Long idProducto, String nombre, String descripción, double precio, int stock, String imagen,
 			List<DetalleCompra> detallesCompra, List<DetalleFactura> detallesFactura, List<CarritoDeCompras> carrito,
 			String artista, String genero, String fechaLanzamiento) {
-		super(idProducto, nombre, descripción, precio, stock, imagen, detallesCompra, detallesFactura, carrito);
+		super();
 		this.artista = artista;
 		this.genero = genero;
 		this.fechaLanzamiento = fechaLanzamiento;

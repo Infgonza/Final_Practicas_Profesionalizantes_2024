@@ -64,6 +64,9 @@ public class Usuario implements UserDetails, Serializable {
 	@JsonBackReference
 	private Cliente cliente;
 	
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private CarritoDeCompras carrito;
+	
 	@ManyToMany(fetch = FetchType.EAGER, targetEntity = RoleEntity.class, cascade = CascadeType.PERSIST)
 	@JoinTable(name="usuarios_roles", joinColumns = @JoinColumn(name="usuario_id"), inverseJoinColumns = @JoinColumn(name="rol_id"))
 	private Set<RoleEntity> roles;

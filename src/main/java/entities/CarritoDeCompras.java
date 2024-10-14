@@ -10,12 +10,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -39,29 +37,33 @@ public class CarritoDeCompras implements Serializable{
 	@Column(name="id_carrito_de_compra")
 	private Long idCarritoDeCompra;
 	
-	@Column(name="subtotal")
-	private double subtotal;
-	
-	@Column(name="precio_unitario")
-	private double precioUnitario;
+
 	
 	// RELACIONES
 	
 	// Un Cliente tiene un Carrito de Compras
-	@OneToOne(mappedBy = "carrito")
-	private Cliente cliente;
+	@OneToOne
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
+	
+	@OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ItemCarrito> items = new ArrayList<>();
+
 	
 	// Un carrito va a representar una Compra
 	@OneToOne(mappedBy = "carrito")
 	private Compra compra;
 	
-	// Un Carrito puede tener muchos Productos
+	
+	
+	/*Un Carrito puede tener muchos Productos
 	@ManyToMany( cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(
 			name="carrito_producto",
 			joinColumns= @JoinColumn (name=" id_carrito"),
 			inverseJoinColumns = @JoinColumn(name="id_producto"))
-	private List<Producto> productos = new ArrayList<Producto>();
+	
+	private List<Producto> productos = new ArrayList<Producto>();*/
 	
 	
 }

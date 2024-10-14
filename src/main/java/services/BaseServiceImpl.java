@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import entities.Usuario;
 import jakarta.transaction.Transactional;
 import repositories.BaseRepository;
 
@@ -79,6 +80,11 @@ public abstract class BaseServiceImpl<E, ID extends Serializable> implements Bas
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
+	}
+
+	public void addItemToCarrito(Usuario usuario, Long productoId, int cantidad) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
