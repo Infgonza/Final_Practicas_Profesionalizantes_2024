@@ -7,13 +7,18 @@ import dto.ProductoDTO;
 import entities.Disco;
 import entities.Producto;
 import entities.Vinilo;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import repositories.BaseRepository;
 import repositories.DiscoRepository;
+import repositories.ProductoRepository;
 import repositories.ViniloRepository;
 
 @Service
 public class ProductoServiceImpl extends BaseServiceImpl<Producto, Long> implements ProductoService{
+	
+	@Autowired
+    private ProductoRepository productoRepository;
 	
 	@Autowired
 	private DiscoRepository discoRepository;
@@ -75,5 +80,9 @@ public class ProductoServiceImpl extends BaseServiceImpl<Producto, Long> impleme
 		
 
     }
+	 public Producto obtenerProductoPorId(Long id) {
+	        return productoRepository.findById(id)
+	            .orElseThrow(() -> new EntityNotFoundException("Producto no encontrado con id: " + id));
+	    }
 
 }

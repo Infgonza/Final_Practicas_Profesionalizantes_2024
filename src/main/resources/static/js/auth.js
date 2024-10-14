@@ -1,27 +1,4 @@
 
-
-let token = null;
-
-export function setToken(newToken) {
-    token = newToken;
-    localStorage.setItem('token', newToken);
-}
-
-export function getToken() {
-    if (!token) {
-        token = localStorage.getItem('token');
-    }
-    return token;
-}
-
-export function removeToken() {
-    token = null;
-    localStorage.removeItem('token');
-}
-
-export function isAuthenticated() {
-    return !!getToken();
-}
 function addAuthHeader(headers = {}) {
     console.log('addAuthHeader called');
     console.log('Initial headers:', headers);

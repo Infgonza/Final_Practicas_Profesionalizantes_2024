@@ -40,31 +40,26 @@ async function traerProductos() {
         console.error('Error al cargar los productos:', error);
     }
 }
+async function agregarAlCarrito(idProducto, cantidad) {
+    try {
+        const response = await fetch('/api/carrito/agregar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+                
+            },
+            body: `productoId=${idProducto}&cantidad=${cantidad}`
+        });
 
-function agregarAlCarrito(idProducto, cantidad) {
-    // Obtener el carrito del localStorage o crear uno vacío
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-    // Verificar si el producto ya está en el carrito
-    const index = carrito.findIndex(p => p.idProducto === idProducto);
-    if (index > -1) {
-        // Si el producto ya está, actualiza la cantidad
-        carrito[index].cantidad += parseInt(cantidad);
-    } else {
-        // Buscar el producto en la página actual (puedes obtener la info desde los elementos HTML)
-        const producto = { 
-            idProducto, 
-            nombre: document.getElementById(`nombreDisco-${idProducto}`).innerText, 
-            precio: document.getElementById(`precio-${idProducto}`).innerText,
-            imagenUrl: document.getElementById(`img-${idProducto}`).src,
-            cantidad: parseInt(cantidad)
-        };
-        // Añadir el producto al carrito
-        carrito.push(producto);
+        console.log(`Producto ${idProducto} añadido al carrito con cantidad ${cantidad}`);
+        
+    } catch (error) {
+        console.error('Error al añadir producto al carrito:', error);
     }
-
-    // Guardar el carrito actualizado en el localStorage
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-
-    console.log(`Producto ${idProducto} añadido al carrito con cantidad ${cantidad}`);
 }
+
+

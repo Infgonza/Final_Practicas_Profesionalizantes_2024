@@ -4,58 +4,73 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import entities.CarritoDeCompras;
+import entities.ItemCarrito;
 import entities.Producto;
 import entities.Usuario;
+import jakarta.transaction.Transactional;
 import repositories.BaseRepository;
+import repositories.CarritoDeComprasRepository;
+import repositories.ProductoRepository;
+import repositories.UsuarioRepository;
 
 @Service
 public class CarritoDeComprasServiceImpl extends BaseServiceImpl<CarritoDeCompras ,Long> implements CarritoDeComprasService{
-	 @Autowired
-	    private UsuarioService usuarioService;
 
-	    @Autowired
-	    private ProductoService productoService;
 
 	public CarritoDeComprasServiceImpl(BaseRepository<CarritoDeCompras, Long> baseRepository) {
 		super(baseRepository);
 
 	}
+	
+	@Autowired
+    private CarritoDeComprasRepository carritoRepository;
 
-	@Override
-	public CarritoDeCompras getOrCreateCarritoForUser(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+    
+    @Autowired
+    private ProductoRepository productoRepository;
 
-	@Override
-	public void addItemToCarrito(Usuario usuario, Producto producto, int cantidad) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Transactional
+    public void agregarProductoAlCarrito(Long usuarioId, Long productoId, int cantidad) {
+        Usuario usuario = usuarioRepository.findById(usuarioId)
+            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-	public void updateItemQuantity(Usuario usuario, Long productoId, int cantidad) {
-		// TODO Auto-generated method stub
-		
-	}
+        CarritoDeCompras carrito = usuario.getCarrito();
+        if (carrito == null) {
+            carrito = new CarritoDeCompras();
+            carrito.setUsuario(usuario);
+            usuario.setCarrito(carrito);
+        }
 
-	public void removeItemFromCarrito(Usuario usuario, Long productoId) {
-		// TODO Auto-generated method stub
-		
-	}
+        Producto producto = productoRepository.findById(productoId)
+            .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
-	@Override
-	public void removeItemFromCarrito(Usuario usuario, Producto producto) {
-		// TODO Auto-generated method stub
-		
-	}
+        ItemCarrito item = carrito.getItems().stream()
+            .filter(i -> i.getProducto().getIdProducto().equals(productoId))
+            .findFirst()
+            .orElse(null);
 
-	@Override
-	public void updateItemQuantity(Usuario usuario, Producto producto, int newQuantity) {
-		// TODO Auto-generated method stub
-		
-	}
+        if (item == null) {
+            item = new ItemCarrito();
+            item.setProducto(producto);
+            item.setCantidad(cantidad);
+            item.setCarrito(carrito);
+            carrito.getItems().add(item);
+        } else {
+            item.setCantidad(item.getCantidad() + cantidad);
+        }
+
+        carritoRepository.save(carrito);
+    }
+
+    		
+}
+
+    
+
 
 	
 
 
-}
+

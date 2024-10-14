@@ -1,7 +1,5 @@
 package entities;
 
-
-
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Set;
@@ -44,7 +42,7 @@ public class Usuario implements UserDetails, Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_usuario")
-	private Long idDetalleCompra;
+	private Long idUsuario;
 	
 	@Column(name = "nombre_usuario", unique = true)
 	private String nombreUsuario;
@@ -64,7 +62,7 @@ public class Usuario implements UserDetails, Serializable {
 	@JsonBackReference
 	private Cliente cliente;
 	
-	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private CarritoDeCompras carrito;
 	
 	@ManyToMany(fetch = FetchType.EAGER, targetEntity = RoleEntity.class, cascade = CascadeType.PERSIST)

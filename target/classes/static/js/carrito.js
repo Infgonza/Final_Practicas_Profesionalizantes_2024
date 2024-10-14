@@ -1,83 +1,69 @@
-/*import { getToken, isAuthenticated } from './auth.js';
+document.addEventListener('DOMContentLoaded', function() {
+    cargarProductosCarrito();
+});
 
-async function cargarCarrito() {
-    if (!isAuthenticated()) {
-        alert('Por favor, inicia sesión para ver tu carrito.');
-        return;
-    }
-
+async function cargarProductosCarrito() {
     try {
-        const response = await fetch('api/v1/carrito/', {
+        const response = await fetch('/api/carrito/productos', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getToken()}`
+                'Content-Type': 'application/json'
             },
         });
 
         if (!response.ok) {
-            throw new Error('Error al cargar el carrito');
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const carrito = await response.json();
-        mostrarCarrito(carrito);
+        const productosCarrito = await response.json();
+        mostrarProductosCarrito(productosCarrito);
     } catch (error) {
-        console.error('Error:', error);
-        alert('Error al cargar el carrito');
+        console.error('Error al cargar los productos del carrito:', error);
+        mostrarMensaje('Error al cargar los productos del carrito', 'error');
     }
 }
 
-function mostrarCarrito(carrito) {
-    const productosCarritoDiv = document.getElementById('productosCarrito');
+function mostrarProductosCarrito(productos) {
+    const contenedorCarrito = document.getElementById('productosCarrito');
     let html = '';
 
-    carrito.items.forEach(item => {
-        html += `
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row align-items-center">
-                        <div>
-                            <img src="${item.producto.imagenUrl}" class="img-fluid rounded-3" alt="${item.producto.nombre}" style="width: 65px;">
+    if (productos.length === 0) {
+        html = '<p>Tu carrito está vacío.</p>';
+    } else {
+        productos.forEach(producto => {
+            html += `
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-row align-items-center">
+                                <div>
+                                    <img src="${producto.imagenUrl}" class="img-fluid rounded-3" alt="${producto.nombre}" style="width: 65px;">
+                                </div>
+                                <div class="ms-3">
+                                    <h5>${producto.nombre}</h5>
+                                    <p class="small mb-0">${producto.artista}</p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center">
+                                <div style="width: 50px;">
+                                    <h5 class="fw-normal mb-0">${producto.cantidad}</h5>
+                                </div>
+                                <div style="width: 80px;">
+                                    <h5 class="mb-0">$${producto.precio}</h5>
+                                </div>
+                                <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                            </div>
                         </div>
-                        <div class="ms-3">
-                            <h5>${item.producto.nombre}</h5>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-row align-items-center">
-                        <div style="width: 50px;">
-                            <h5 class="fw-normal mb-0">${item.cantidad}</h5>
-                        </div>
-                        <div style="width: 80px;">
-                            <h5 class="mb-0">$${item.producto.precio}</h5>
-                        </div>
-                        <div style="width: 80px;">
-                            <h5 class="mb-0">$${item.producto.precio * item.cantidad}</h5>
-                        </div>
-                        <a href="#!" style="color: #cecece;" onclick="eliminarProducto(${item.producto.id})"><i class="fas fa-trash-alt"></i></a>
                     </div>
                 </div>
-            </div>
-        </div>
-        `;
-    });
-
-    productosCarritoDiv.innerHTML = html;
-    actualizarTotalCarrito(carrito);
-}
-
-function actualizarTotalCarrito(carrito) {
-    const total = carrito.items.reduce((acc, item) => acc + (item.producto.precio * item.cantidad), 0);
-    document.getElementById('totalCarrito').textContent = `$${total.toFixed(2)}`;
-}
-
-async function eliminarProducto(productoId) {
-    try {
-        const response = await fetch(`api/v1/carrito/eliminar/${productoId}`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${getToken()}`
-            },
+            `;
         });
-*/
+    }
+
+    contenedorCarrito.innerHTML = html;
+}
+
+function mostrarMensaje(mensaje, tipo) {
+    alert(mensaje);  
+}

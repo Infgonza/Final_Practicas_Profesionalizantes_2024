@@ -6,5 +6,7 @@ import entities.Producto;
 
 @Repository
 public interface ProductoRepository extends BaseRepository<Producto, Long>{
+	
+	
 
 }

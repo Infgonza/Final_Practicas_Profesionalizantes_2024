@@ -8,5 +8,6 @@ import entities.CarritoDeCompras;
 public interface CarritoDeComprasRepository extends BaseRepository<CarritoDeCompras, Long> {
 	
 	
+	
 
 }
