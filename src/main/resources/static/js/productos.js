@@ -35,19 +35,28 @@ async function traerProductos() {
         `;
         }
 
-        document.querySelector('.product-grid').innerHTML = productosHtml;
+        const productGrid = document.querySelector('.product-grid');
+        if (productGrid) {
+            productGrid.innerHTML = productosHtml;
+        } else {
+            
+        }
     } catch (error) {
         console.error('Error al cargar los productos:', error);
     }
 }
+
+const token = localStorage.getItem('token');
+
 async function agregarAlCarrito(idProducto, cantidad) {
     try {
         const response = await fetch('/api/carrito/agregar', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-                
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': `Bearer ${token}`
             },
+            credentials: 'include',
             body: `productoId=${idProducto}&cantidad=${cantidad}`
         });
 
@@ -61,5 +70,4 @@ async function agregarAlCarrito(idProducto, cantidad) {
         console.error('Error al añadir producto al carrito:', error);
     }
 }
-
 

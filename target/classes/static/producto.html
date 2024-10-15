@@ -64,10 +64,11 @@
                 </select>
             </div>
 
-            <div class="quantity">
-                <input type="number" id="cantidadProducto" value="1" min="1" max="5">
-                <button id="add-to-cart"">Agregar al carrito</button>
-            </div>
+			<div class="quantity">
+			  <label for="cantidadProducto">Cantidad:</label>
+			  <input type="number" id="cantidadProducto" name="cantidadProducto" value="1" min="1">
+			</div>
+			<button onclick="agregarAlCarritoDesdeProducto()">Agregar al carrito</button>
         </div>
     </section>
 
@@ -94,10 +95,22 @@
     </footer>
 
     <!-- Scripts -->
-	<script src="https://code.j	.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="js/sesion.js"></script>
-	<script src="detallesproducto.js"></script>
-    
+	<script src="js/productos.js"></script>
+	<script>
+		function agregarAlCarritoDesdeProducto() {
+		    const urlParams = new URLSearchParams(window.location.search);
+		    const idProducto = urlParams.get('id');
+		    const cantidad = document.getElementById('cantidadProducto').value;
+		    
+		    if (idProducto && cantidad) {
+		        agregarAlCarrito(idProducto, parseInt(cantidad));
+		    } else {
+		        console.error('Error: No se pudo obtener el ID del producto o la cantidad');
+		    }
+		}
+		</script>
 	<script type="text/javascript" src="js/detallesproducto.js"></script>
     <script
       type="module"
@@ -107,20 +120,8 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
+	
 
-    <!-- Script para agregar productos al carrito -->
-    <script>
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const idProducto = urlParams.get('id'); // Obtener el id del producto desde la URL
-
-        function agregarProductoAlCarrito() {
-            // Obtener la cantidad seleccionada
-            const cantidad = document.getElementById('cantidadProducto').value;
-            // Llamar a la función en productos.js para agregar el producto al carrito
-			console.log("Agregando producto al carrito con ID:", idProducto, "y cantidad:", cantidad);
-            agregarAlCarrito(idProducto, cantidad);
-        }
-    </script>
+   
 </body>
 </html>

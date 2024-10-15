@@ -45,7 +45,8 @@ public class SecurityConfig   {
                 .requestMatchers("/api/v1/auth/**").permitAll()
                 .requestMatchers("/subirproductos.html").permitAll() // Permitir acceso a la página
                 .requestMatchers("/api/v1/productos/verificarPermisoSubir").hasAuthority("Administrador") // Proteger la API
-                .requestMatchers("/**.html", "/api/v1/productos/**", "/productos",  "api/carrito/**").permitAll()
+                .requestMatchers("/**.html", "/api/v1/productos/**", "/productos").permitAll()
+                .requestMatchers("/api/carrito/**").authenticated()
                 .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**", "/imagenes/**").permitAll()
                 .anyRequest().authenticated())
             .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

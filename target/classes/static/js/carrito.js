@@ -1,18 +1,45 @@
 document.addEventListener('DOMContentLoaded', function() {
-    cargarProductosCarrito();
+    const token = localStorage.getItem('token');
+    if (!token) {
+        console.log('No se encontró token de autenticación');
+        mostrarMensajeNoAutenticado();
+    } else {
+        cargarProductosCarrito();
+    }
 });
+
+
+function mostrarMensajeNoAutenticado() {
+    const contenedorCarrito = document.getElementById('productosCarrito');
+    contenedorCarrito.innerHTML = `
+        <div class="alert alert-warning" role="alert">
+            No has iniciado sesión. Por favor, <a href="login.html" class="alert-link">inicia sesión</a> para ver tu carrito.
+        </div>
+    `;
+}
 
 async function cargarProductosCarrito() {
     try {
-        const response = await fetch('/api/carrito/productos', {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            throw new Error('No se encontró token de autenticación');
+        }
+
+        const response = await fetch('http://localhost:8080/api/carrito/productos', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
+            credentials: 'include'
         });
 
         if (!response.ok) {
+            if (response.status === 401) {
+                localStorage.removeItem('token'); // Elimina el token si no es válido
+                throw new Error('Sesión expirada. Por favor, inicia sesión nuevamente.');
+            }
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
@@ -20,18 +47,50 @@ async function cargarProductosCarrito() {
         mostrarProductosCarrito(productosCarrito);
     } catch (error) {
         console.error('Error al cargar los productos del carrito:', error);
-        mostrarMensaje('Error al cargar los productos del carrito', 'error');
+        mostrarMensaje(error.message, 'error');
+    }
+}
+
+
+async function eliminarProducto(productoId) {
+    try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            throw new Error('No se encontró token de autenticación');
+        }
+
+        const response = await fetch(`http://localhost:8080/api/carrito/productos/${productoId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            credentials: 'include'
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // Recargar los productos del carrito
+        await cargarProductosCarrito();
+        mostrarMensaje('Producto eliminado exitosamente', 'success');
+    } catch (error) {
+        console.error('Error al eliminar el producto:', error);
+        mostrarMensaje(error.message, 'error');
     }
 }
 
 function mostrarProductosCarrito(productos) {
     const contenedorCarrito = document.getElementById('productosCarrito');
     let html = '';
+    let total = 0;
 
     if (productos.length === 0) {
         html = '<p>Tu carrito está vacío.</p>';
     } else {
         productos.forEach(producto => {
+            const subtotal = producto.precio * producto.cantidad;
+            total += subtotal;
             html += `
                 <div class="card mb-3">
                     <div class="card-body">
@@ -42,17 +101,17 @@ function mostrarProductosCarrito(productos) {
                                 </div>
                                 <div class="ms-3">
                                     <h5>${producto.nombre}</h5>
-                                    <p class="small mb-0">${producto.artista}</p>
                                 </div>
                             </div>
                             <div class="d-flex flex-row align-items-center">
                                 <div style="width: 50px;">
                                     <h5 class="fw-normal mb-0">${producto.cantidad}</h5>
                                 </div>
+                                
                                 <div style="width: 80px;">
-                                    <h5 class="mb-0">$${producto.precio}</h5>
+                                    <h5 class="mb-0">$${subtotal.toFixed(0)}</h5>
                                 </div>
-                                <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                <a href="#!" onclick="eliminarProducto(${producto.id})" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                             </div>
                         </div>
                     </div>
@@ -62,8 +121,24 @@ function mostrarProductosCarrito(productos) {
     }
 
     contenedorCarrito.innerHTML = html;
+    actualizarTotal(total);
+}
+
+function actualizarTotal(total) {
+    const totalElement = document.getElementById('totalCarrito');
+    if (totalElement) {
+        totalElement.textContent = `Total a pagar: $${total.toFixed(2)}`;
+    }
 }
 
 function mostrarMensaje(mensaje, tipo) {
-    alert(mensaje);  
+    const contenedorMensaje = document.getElementById('mensajeCarrito');
+    contenedorMensaje.innerHTML = `
+        <div class="alert alert-${tipo === 'error' ? 'danger' : 'success'}" role="alert">
+            ${mensaje}
+        </div>
+    `;
+    setTimeout(() => {
+        contenedorMensaje.innerHTML = '';
+    }, 3000);
 }

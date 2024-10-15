@@ -70,8 +70,13 @@ nav ul li a.active {
   color: #ffffff; /* Color del texto del elemento seleccionado */
 }
 
+.h-100{
+	width: 630px;
+}
 
-
+.carrito-vacio{
+	color: red;
+}
 
 .search-bar {
     padding-left: 50px;
