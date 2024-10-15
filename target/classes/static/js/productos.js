@@ -26,11 +26,12 @@ async function traerProductos() {
                     <img src="${producto.imagenUrl}" alt="${producto.nombre}" class="product-image" id="img-${producto.idProducto}" />
                 </a>
                 <a href="producto.html?id=${producto.idProducto}">
-                    <h2 id="nombreDisco-${producto.idProducto}">${producto.nombre}</h2>
+                    <h2 class="nombre-disco" id="nombreDisco-${producto.idProducto}" style="font-size: 20px;">${producto.nombre}</h2>
                 </a>
-                <p>${producto.artista || 'Artista Desconocido'}</p>
+                <p class="artista-texto">${producto.artista || 'Artista Desconocido'}</p>
+
                 <span class="price" id="precio-${producto.idProducto}">$${producto.precio}</span>
-                <button onclick="agregarAlCarrito(${producto.idProducto}, 1)">Añadir al carrito</button>
+                <button onclick="agregarAlCarrito(${producto.idProducto}, 1)" >Añadir al carrito</button>
             </div>
         `;
         }

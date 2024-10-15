@@ -320,7 +320,11 @@ nav ul li a.active {
     font-size: 27px;
     text-decoration: none; /* Elimina el subrayado */
 }
-
+.artista-texto {
+    font-size: 14px;
+    color: rgb(54, 54, 54);
+    font-style: italic;
+}
 
 .product-card a {
     text-decoration: none; /* Elimina el subrayado del enlace */
@@ -498,9 +502,8 @@ align-items: center;
     
     gap: 40px;
   }
-
-  .quantity  button {
-    background-color: #ff6f61;
+  .boton-agregar-producto{
+	 background-color: #ff6f61;
     color: white;
     border: none;
     padding: 10px 16px;
@@ -508,6 +511,11 @@ align-items: center;
     margin-top: 12px;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+	
+  }
+
+  .quantity  button {
+   
 }
   
 .quantity button:hover {
