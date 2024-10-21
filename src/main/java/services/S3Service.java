@@ -33,7 +33,7 @@ public class S3Service {
 		   PutObjectRequest putObjectRequest = PutObjectRequest.builder()
 				   .bucket(bucketName)
 				   .key(fileName)
-				   .contentType(fileName)
+				   .contentType(file.getContentType())
 				   .build();
 		   
 		   // Subimos el archivo a S3

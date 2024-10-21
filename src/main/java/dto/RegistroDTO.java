@@ -12,5 +12,6 @@ public class RegistroDTO {
     private String nombreUsuario;
     private String email;
     private String contrasenia;
+    private String rol = "Usuario";
     private Set<String> roles;
 }
