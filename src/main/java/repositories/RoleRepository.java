@@ -9,5 +9,6 @@ import entities.RoleEntity;
 
 @Repository
 public interface RoleRepository extends BaseRepository<RoleEntity, Long> {
-    Optional<RoleEntity> findByNombreRol(ERole nombreRol);
+	Optional<RoleEntity> findByNombreRol(ERole nombreRol);
+    boolean existsByNombreRol(ERole nombreRol);
 }

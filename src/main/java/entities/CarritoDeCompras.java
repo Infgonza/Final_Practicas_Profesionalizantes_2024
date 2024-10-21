@@ -55,15 +55,4 @@ public class CarritoDeCompras implements Serializable{
 	private Compra compra;
 	
 	
-	
-	/*Un Carrito puede tener muchos Productos
-	@ManyToMany( cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(
-			name="carrito_producto",
-			joinColumns= @JoinColumn (name=" id_carrito"),
-			inverseJoinColumns = @JoinColumn(name="id_producto"))
-	
-	private List<Producto> productos = new ArrayList<Producto>();*/
-	
-	
 }

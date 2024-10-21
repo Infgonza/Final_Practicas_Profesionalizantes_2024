@@ -36,48 +36,70 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario, Long> implement
 	}
 	
 	public Usuario registrar(RegistroDTO registroDTO) throws Exception {
-	    // Verificar si el email ya está registrado
+		
+	    // Verificamos si el email ya esta registrado
 	    if (usuarioRepository.findByEmail(registroDTO.getEmail()).isPresent()) {
 	        throw new Exception("El email ya está registrado");
 	    }
-	    // Verificar si el nombre de usuario ya está en uso
+	    
+	    // Verificamos si el nombre de usuario ya esta en uso
 	    if (usuarioRepository.findByNombreUsuario(registroDTO.getNombreUsuario()).isPresent()) {
 	        throw new Exception("El nombre de usuario ya está en uso");
 	    }
 
+	    // Creamos el nuevo usuario
+	    Usuario usuario = Usuario.builder()
+                .nombreUsuario(registroDTO.getNombreUsuario())
+                .email(registroDTO.getEmail())
+                .contrasenia(passwordEncoder.encode(registroDTO.getContrasenia()))
+                .build();
+	    
+	    
+	    // Asignamos al nuevo usuario el rol por defecto USUARIO
 	    Set<RoleEntity> roles = new HashSet<>();
-	    if (registroDTO.getRoles() != null && !registroDTO.getRoles().isEmpty()) {
-	        for (String role : registroDTO.getRoles()) {
-	            // Buscar el rol en la base de datos
-	            RoleEntity rolExistente = roleRepository.findByNombreRol(ERole.valueOf(role))
-	                    .orElseThrow(() -> new RuntimeException("Error: Rol no encontrado: " + role));
-	            roles.add(rolExistente);
-	        }
-	    } else {
-	        // Asignar el rol de Usuario por defecto
-	        RoleEntity rolUsuario = roleRepository.findByNombreRol(ERole.Usuario)
-	                .orElseThrow(() -> new RuntimeException("Error: Rol no encontrado: Usuario"));
-	        roles.add(rolUsuario);
+        RoleEntity userRole = roleRepository.findByNombreRol(ERole.Usuario)
+                .orElseThrow(() -> new RuntimeException("Error: Rol no encontrado."));
+        roles.add(userRole);
+        
+        usuario.setRoles(roles);
+        
+        return usuarioRepository.save(usuario);
+    }
+	    
+	public Usuario crearUsuarioAdmin(RegistroDTO registroDTO) throws Exception {
+		
+		// Verificamos si el email ya esta registrado
+	    if (usuarioRepository.findByEmail(registroDTO.getEmail()).isPresent()) {
+	        throw new Exception("El email ya está registrado");
+	    }
+	    
+	    // Verificamos si el nombre de usuario ya esta en uso
+	    if (usuarioRepository.findByNombreUsuario(registroDTO.getNombreUsuario()).isPresent()) {
+	        throw new Exception("El nombre de usuario ya está en uso");
 	    }
 
-	    // Crear nuevo usuario
-	    Usuario nuevoUsuario = Usuario.builder()
-	            .nombreUsuario(registroDTO.getNombreUsuario())
-	            .email(registroDTO.getEmail())
-	            .contrasenia(passwordEncoder.encode(registroDTO.getContrasenia()))
-	            .roles(roles)
-	            .build();
+        // Creamos un nuevo usuario 
+        Usuario admin = Usuario.builder()
+                .nombreUsuario(registroDTO.getNombreUsuario())
+                .email(registroDTO.getEmail())
+                .contrasenia(passwordEncoder.encode(registroDTO.getContrasenia()))
+                .build();
 
-	    return usuarioRepository.save(nuevoUsuario);
-	}
-
+        // Y le asignamos rol de administrador
+        Set<RoleEntity> roles = new HashSet<>();
+        RoleEntity adminRole = roleRepository.findByNombreRol(ERole.Administrador)
+                .orElseThrow(() -> new RuntimeException("Error: Rol de administrador no encontrado."));
+        roles.add(adminRole);
+        
+        admin.setRoles(roles);
+        
+        return usuarioRepository.save(admin);
+    }
 	
 	public boolean existeUsuario(String nombreUsuario) {
         return usuarioRepository.findByNombreUsuario(nombreUsuario).isPresent();
     }
-	
-	  
-	
+
 }
 
 

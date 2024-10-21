@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,6 +39,7 @@ public class AuthController extends BaseControllerImpl<Usuario, UsuarioServiceIm
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    // Creacion de un usuario
     @PostMapping("registro")
     public ResponseEntity<?> registro(@RequestBody RegistroDTO registroDTO) throws Exception {
         logger.info("Intento de registro para usuario: {}", registroDTO.getNombreUsuario());
@@ -47,6 +49,23 @@ public class AuthController extends BaseControllerImpl<Usuario, UsuarioServiceIm
             return ResponseEntity.status(HttpStatus.CREATED).body(nuevoUsuario);
         } catch (Exception e) {
             logger.error("Error durante el registro: ", e);
+            Map<String, String> response = new HashMap<>();
+            response.put("error", "Error durante el registro: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
+    }
+    
+    // Creacion de un usuario ADMINISTRADOR mediante otro administrador
+    @PostMapping("registro/admin")
+    @PreAuthorize("hasRole('Administrador')") // Solo otros admins pueden crear admins
+    public ResponseEntity<?> registroAdmin(@RequestBody RegistroDTO registroDTO) throws Exception {
+        logger.info("Intento de registro de administrador: {}", registroDTO.getNombreUsuario());
+        try {
+            Usuario nuevoAdmin = servicio.crearUsuarioAdmin(registroDTO);
+            logger.info("Administrador registrado exitosamente: {}", nuevoAdmin.getNombreUsuario());
+            return ResponseEntity.status(HttpStatus.CREATED).body(nuevoAdmin);
+        } catch (Exception e) {
+            logger.error("Error durante el registro de administrador: ", e);
             Map<String, String> response = new HashMap<>();
             response.put("error", "Error durante el registro: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
