@@ -1,4 +1,5 @@
 # Ignored Files
 /env.properties
+env.properties
 /.env.local
 .env.local
