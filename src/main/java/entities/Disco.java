@@ -30,6 +30,7 @@ public class Disco extends Producto implements Serializable{
 	private String genero;
 	@Column(name="fecha_lanzamiento")
 	private String fechaLanzamiento;
+	
 	public Disco(Long idProducto, String nombre, String descripción, double precio, int stock, String imagen,
 			List<DetalleCompra> detallesCompra, List<DetalleFactura> detallesFactura, List<CarritoDeCompras> carrito) {
 		super();

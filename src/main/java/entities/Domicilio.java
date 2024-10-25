@@ -33,7 +33,7 @@ public class Domicilio implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_domicilio")
-	private Long idDetalleCompra;
+	private Long idDomicilio;
 	
 	@Column(name = "calle")
 	private String calle;

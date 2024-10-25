@@ -77,6 +77,7 @@ public class CarritoDeComprasController extends BaseControllerImpl<CarritoDeComp
 	        }
 	    }
 	 
+	 
 	 @DeleteMapping("/productos/{productoId}")
 	    public ResponseEntity<?> eliminarProductoDelCarrito(Authentication authentication, @PathVariable Long productoId) {
 	        try {

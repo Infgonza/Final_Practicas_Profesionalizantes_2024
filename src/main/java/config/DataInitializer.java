@@ -17,7 +17,6 @@ import entities.RoleEntity;
 import entities.Usuario;
 import jakarta.transaction.Transactional;
 
-
 @Component
 public class DataInitializer implements CommandLineRunner{
 

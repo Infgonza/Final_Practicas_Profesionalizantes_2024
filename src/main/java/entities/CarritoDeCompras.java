@@ -46,8 +46,9 @@ public class CarritoDeCompras implements Serializable{
 	@JoinColumn(name = "usuario_id", unique = true)
 	private Usuario usuario;
 	
+	
 	@OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<ItemCarrito> items = new ArrayList<>();
+	private List<ItemCarrito> items = new ArrayList<ItemCarrito>();
 
 	
 	// Un carrito va a representar una Compra

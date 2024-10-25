@@ -89,31 +89,33 @@
             <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-api</artifactId>
-    <version>0.11.5</version>
-</dependency>
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-impl</artifactId>
-    <version>0.11.5</version>
-    <scope>runtime</scope>
-</dependency>
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-jackson</artifactId>
-    <version>0.11.5</version>
-    <scope>runtime</scope>
-</dependency>
-        
-
-    <!-- https://mvnrepository.com/artifact/software.amazon.awssdk/s3 -->
+    		<groupId>io.jsonwebtoken</groupId>
+    		<artifactId>jjwt-api</artifactId>
+    		<version>0.11.5</version>
+		</dependency>
+		<dependency>
+    		<groupId>io.jsonwebtoken</groupId>
+    		<artifactId>jjwt-impl</artifactId>
+    		<version>0.11.5</version>
+    		<scope>runtime</scope>
+		</dependency>
+		<dependency>
+	    	<groupId>io.jsonwebtoken</groupId>
+	    	<artifactId>jjwt-jackson</artifactId>
+	    	<version>0.11.5</version>
+	    	<scope>runtime</scope>
+		</dependency>
+		<dependency>
+	   		<groupId>com.mercadopago</groupId>
+	   		<artifactId>sdk-java</artifactId>
+	   		<version>2.1.7</version>
+		</dependency>
+    	<!-- https://mvnrepository.com/artifact/software.amazon.awssdk/s3 -->
 		<dependency>
     		<groupId>software.amazon.awssdk</groupId>
    		 	<artifactId>s3</artifactId>
     		<version>2.20.0</version> 
 		</dependency>
-
     </dependencies>
  
     
