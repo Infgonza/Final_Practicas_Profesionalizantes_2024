@@ -38,6 +38,9 @@ public class Cliente implements Serializable{
 	@Column(name="id_cliente")
 	private Long idCliente;
 	
+	@Column(name = "email")
+	private String email;
+	
 	@Column(name = "nombre")
 	private String nombre;
 

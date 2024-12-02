@@ -18,7 +18,8 @@ $(document).ready(function() {
         $('#loginLink').hide(); // Ocultar opción de ingresar
         
         if (roles.includes('Administrador')) {
-            $('#adminPanel').show();
+            $('#subirProducto').show();
+            $('#gestionarUsuarios').show();
         }
 
         $('#logoutLink').on('click', function() {

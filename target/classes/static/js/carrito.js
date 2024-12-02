@@ -99,15 +99,15 @@ function mostrarProductosCarrito(productos) {
                         <div class="d-flex justify-content-between">
                             <div class="d-flex flex-row align-items-center">
                                 <div>
-                                    <img src="${producto.imagenUrl}" class="img-fluid rounded-3" alt="${producto.nombre}" style="width: 65px;">
+                                    <img src="${producto.imagenUrl}" class="img-fluid rounded-3" alt="${producto.nombre}" style="width: 50px;">
                                 </div>
                                 <div class="ms-3">
-                                    <h5>${producto.nombre}</h5>
+                                    <h5 class="mb-0">${producto.nombre}</h5>
                                 </div>
                             </div>
                             <div class="d-flex flex-row align-items-center">
                                 <div style="width: 50px;">
-                                    <h5 class="fw-normal mb-0">${producto.cantidad}</h5>
+                                    <h5 class="fw-normal mb-0">x${producto.cantidad}</h5>
                                 </div>
                                 
                                 <div style="width: 80px;">

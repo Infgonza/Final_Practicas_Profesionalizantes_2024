@@ -37,13 +37,15 @@
          </div>
 
 		 <div class="user">
-		 		     <button id="userIcon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></button>
-		 		     <div id="userMenu" class="user-menu">
-		 		         <a id="profileLink" href="perfil.html" style="display: none;">Perfil</a>
-		 		         <a id="logoutLink" href="#" style="display: none;">Cerrar sesión</a>
-		 		         <a id="loginLink" href="login.html" style="display: none;">Ingresar</a>
-		 		     </div>
-		 		 </div>
+		 	     <button id="userIcon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></button>
+		 	     <div id="userMenu" class="user-menu">
+		 	         <a id="profileLink" href="perfil.html" style="display: none;">Perfil</a>
+		 			 <a id="subirProducto" style="display: none;" href="#" onclick="navigateToSubirProductos(); return false;">Subir producto</a>
+		 			 <a id="gestionarUsuarios" style="display: none;" href="#" onclick="navigateToUsuarios(); return false;">Usuarios</a>
+		 	         <a id="logoutLink" href="#" style="display: none;">Cerrar sesión</a>
+		 	         <a id="loginLink" href="login.html" style="display: none;">Ingresar</a>
+		 	     </div>
+		 	 </div>
 
          <div class="cart">
           <a href="carrito.html">
@@ -202,6 +204,7 @@
 	        }
 	    </script>
 	<script src="js/subirproductos.js"></script>
+	<script src="js/auth-navegation.js"></script>
 
 
 </body>

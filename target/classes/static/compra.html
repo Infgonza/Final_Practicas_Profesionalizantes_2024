@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="icon" type="image/x-icon" href="imagenes/icono2.png" />
+	
+
+    <title>Groove Records</title>
+</head>
+
+
+<body>
+    
+    <header>
+        <div class="container">
+
+          <img src="imagenes/logo.png" alt="logo">  
+          
+
+         <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href=				"/productos">Productos</a></li>
+                <li><a href="contacto.html" class="active">Contacto</a></li>
+                
+            </ul>
+         </nav>
+
+         <div class="search-bar">
+            <input type="text" placeholder="Buscar">
+            <button><i class="fas fa-search"></i></button>
+         </div>
+
+		 <div class="user">
+		 	     <button id="userIcon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></button>
+		 	     <div id="userMenu" class="user-menu">
+		 	         <a id="profileLink" href="perfil.html" style="display: none;">Perfil</a>
+		 			 <a id="subirProducto" style="display: none;" href="#" onclick="navigateToSubirProductos(); return false;">Subir producto</a>
+		 			 <a id="gestionarUsuarios" style="display: none;" href="#" onclick="navigateToUsuarios(); return false;">Usuarios</a>
+		 	         <a id="logoutLink" href="#" style="display: none;">Cerrar sesión</a>
+		 	         <a id="loginLink" href="login.html" style="display: none;">Ingresar</a>
+		 	     </div>
+		 	 </div>
+
+         <div class="cart">
+          <a href="carrito.html">
+              <button><i class="fa fa-shopping-cart fa-lg " aria-hidden="true" ></i></button>
+          </a>
+       </div>
+        </div>
+    </header>
+
+      
+      
+      
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+
+<main class="compra">
+	
+	<section class="section-compra">
+		<form  action="/api/v1/clientes/registro" method="POST" id="informacion-compra">
+			<h3 class="h5-compra">Compra</h3>
+				<h5 class="h5-compra">Datos del comprador</h3>
+				<input id="clienteEmail" type="email" class="input-comprador" placeholder="Email" 		required>
+				<input id="clienteNombre" type="text" class="input-comprador" placeholder="Nombre" 		required>
+				<input id="clienteApellido" type="text" class="input-comprador" placeholder="Apellido" 		required>
+				<input id="clienteDni" type=" text" class="input-comprador" placeholder="DNI" 		required>
+				<h5	 class="h5-compra">Dirección</h1>
+				<input id="clienteProvincia"type="text" class="input-comprador" placeholder="Provincia" 		required>
+				<input id="clienteCalle" type="text" class="input-comprador" placeholder="Calle" required>
+				
+				<section>
+					<input id="clienteNumero" type=" text" class="input-domicilio" placeholder="Número" 		required>
+					<input id="clienteCodPostal" type=" text" class="input-domicilio" placeholder="Código postal" 		required>
+					
+				</section>
+				
+				<h5	 class="h5-compra">Medios de pago</h1>
+					
+					<div class="accordion" id="accordionExample">
+					  <div class="accordion-item">
+					    <h2 class="accordion-header" id="headingOne">
+					      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					        <img draggable="false" class="mp-img" src="/imagenes/mp.png">
+					      </button>
+					    </h2>
+					    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+					      <div class="accordion-body">
+					        <img draggable="false" class="mp-img2" src="/imagenes/mp2.jpg">
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					
+					
+					
+				
+				
+						
+					
+				
+			</form>
+			<button id="proceedToPaymentBtn" type="submit" class="boton-pagar">REALIZAR PEDIDO</button>	
+		
+	</section>
+	
+	<section class="section-producto">
+		<div class="container">
+		       <div class="section section-producto">
+		           <h3>Productos</h3>
+				   
+		           <div class="productos-panel">
+		               <div id="productosCarrito"></div>
+		           </div>
+		           
+		           <div id="totalCarrito" class="card mb-4 p-3 fw-bold"></div>
+		       </div>
+		   </div>
+		   
+		  
+	</section>
+	
+	
+	
+   
+   
+</main>
+ 
+ 
+ 
+<footer class="footer">
+  <ul class="logo">
+    
+    <img src="imagenes/logofooter.png">
+    
+  </ul>
+  <ul class="social-icon">
+    <li class="icon-elem">
+      <a href="#" class="icon">
+        <ion-icon name="logo-youtube"></ion-icon>
+      </a>
+    </li>
+    <li class="icon-elem">
+      <a href="#" class="icon">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </a>
+    </li>
+    <li class="icon-elem">
+      <a href="#" class="icon">
+        <ion-icon name="logo-whatsapp"></ion-icon>
+      </a>
+    </li>
+    <li class="icon-elem">
+      <a href="#" class="icon">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </a>
+    </li>
+    <li class="icon-elem">
+      <a href="#" class="icon">
+        <ion-icon name="mail-outline"></ion-icon>
+      </a>
+    </li>
+  </ul>
+
+  <ul class="menu">
+    <li class="menu-elem">
+      <a href="index.html" class="menu-icon"> Inicio </a>
+    </li>
+    <li class="menu-elem">
+      <a href="productos.html" class="menu-icon"> Productos </a>
+    </li>
+    <li class="menu-elem">
+      <a href="contacto.html" class="menu-icon"> Contacto </a>
+    </li>
+    <li class="menu-elem">
+      <a href="" class="menu-icon"> Envíos </a>
+    </li>
+    <li class="menu-elem">
+      <a href="" class="menu-icon"> Sobre Nosotros </a>
+    </li>
+  </ul>
+  <p class="text">Copyright 2024 | Groove Records®</p>
+</footer>
+
+
+<script
+  type="module"
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+  nomodule
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/sesion.js"></script>
+	<script src="js/auth.js"></script>
+	<script src="js/carrito.js"></script>
+	<script src="js/compra.js"></script>
+	<script src="js/auth-navegation.js"></script>
+
+
+
+</body>
+</html> 

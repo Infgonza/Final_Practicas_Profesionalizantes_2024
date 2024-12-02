@@ -3,6 +3,7 @@ package config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -43,9 +44,10 @@ public class SecurityConfig   {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers("/api/v1/auth/**").permitAll()
-                .requestMatchers("/subirproductos.html").permitAll() // Permitir acceso a la página
-                .requestMatchers("/api/v1/productos/verificarPermisoSubir").hasAuthority("Administrador") // Proteger la API
+                .requestMatchers("/subirproductos.html", "/usuarios.html").permitAll() // Permitir acceso a la página
+                .requestMatchers("/api/v1/productos/verificarPermisoSubir", "/api/v1/usuarios/listar").hasAuthority("Administrador") // Proteger la API
                 .requestMatchers("/**.html", "/api/v1/productos/**", "/productos").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/api/v1/usuarios/cambiarRol/**").hasAuthority("Administrador")
                 .requestMatchers("/api/carrito/**").authenticated()
                 .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**", "/imagenes/**").permitAll()
                 .anyRequest().authenticated())

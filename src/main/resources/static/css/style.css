@@ -152,7 +152,7 @@ nav ul li a.active {
     border: 1px solid #ccc; /* Borde */
     border-radius: 4px; 
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
-    z-index: 1; 
+    z-index: 10; 
 }
 .user-menu a{
 	display: block;
@@ -784,6 +784,140 @@ align-items: center;
   .h2-mi-cuenta {
       font-size: 18px;
   }
+}
+
+/*TABLA USUARIOS*/
+
+table {
+            width: 80%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 100px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgb(255, 153, 51);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .btn-eliminar {
+            color: white;
+            background-color: #e74c3c;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-eliminar:hover {
+            background-color: #c0392b;
+        }
+        
+/* COMPRA */
+
+
+.compra{
+	display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+	margin-bottom: 130px;
+}
+.section-compra .section-producto{
+ 
+  width: 100px ;
+  flex: 1;
+  min-width: 500px;
+	
+}
+.section-producto{
+  position: sticky;
+  margin-top: 15px;
+  align-self: flex-start; /* Asegura que la sección se quede alineada */
+	
+}
+
+.card-compra{
+	width: 400px;
+}
+.input-comprador {
+	border-color: #000000;
+	margin-top: 10px;
+	width: 700px;
+}
+.input-domicilio {
+	border-color: #000000;
+	margin-top: 10px;
+	width: 348px;
+}
+.h5-compra{
+	margin-top: 30px;
+}
+.mp-img{
+	
+	display: flex;
+	justify-content: right;
+	width: 100px;
+}
+.mp-img2{
+	width: 650px;
+}
+.mercado-pago{
+	border-color: #000000;
+	border-radius: 10px;
+	height: 100px	;
+	background-color: white;
+	margin-top: 30px;
+
+}
+
+.productos-panel {
+	        position: relative;
+            max-height: 400px; 
+            overflow-y: auto; 
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            width: 450px;
+        }
+        .productos-panel::-webkit-scrollbar {
+            
+             font-size: 12px;
+        }
+        .productos-panel::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .productos-panel::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+        .productos-panel::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .productos-panel .card-body {
+            font-size: 0.9rem;
+}
+.boton-pagar	{
+	font-size: 14px;
+	width: 210px;
+	color: white;
+	background-color: #ff7350;
+	border-style: none;
+	border-radius: 5px;
+	padding: 15px;
+	margin-top: 20px;
 }
 
 
