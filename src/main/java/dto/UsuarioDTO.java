@@ -15,7 +15,9 @@ public class UsuarioDTO {
 	    private String nombreUsuario;
 	    private String email;
 	    private String rol;
+	 
 	    private Set<String> roles;
+	    private String telefono;
 	    
 	    public static UsuarioDTO fromEntity(Usuario usuario) {
 	        String rolString = usuario.getRoles().stream()
@@ -26,11 +28,16 @@ public class UsuarioDTO {
 	        return new UsuarioDTO(
 	            usuario.getIdUsuario(),
 	            usuario.getNombreUsuario(),
+	            
 	            usuario.getEmail(),
+	            
+	            
 	            rolString,
 	            usuario.getRoles().stream()
 	                .map(role -> role.getNombreRol().toString())
-	                .collect(Collectors.toSet())
+	                .collect(Collectors.toSet()),
+	                usuario.getTelefono()
 	        );
+	       
 	    }
 }

@@ -100,6 +100,7 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario, Long> implement
 	    Usuario usuario = Usuario.builder()
                 .nombreUsuario(registroDTO.getNombreUsuario())
                 .email(registroDTO.getEmail())
+                .telefono(registroDTO.getTelefono())
                 .contrasenia(passwordEncoder.encode(registroDTO.getContrasenia()))
                 .build();
 	    

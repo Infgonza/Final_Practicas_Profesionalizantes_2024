@@ -1,12 +1,16 @@
 package controllers;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,14 +20,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mercadopago.net.HttpStatus;
-
 import dto.UsuarioDTO;
 import entities.ERole;
 import entities.RoleEntity;
 import entities.Usuario;
 import repositories.RoleRepository;
 import repositories.UsuarioRepository;
+import services.JwtService;
 import services.UsuarioServiceImpl;
 
 @RestController
@@ -33,6 +36,8 @@ public class UsuarioController extends BaseControllerImpl<Usuario, UsuarioServic
 	
 	@Autowired
     private RoleRepository roleRepository;
+	@Autowired
+	private JwtService jwtService;
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
@@ -129,6 +134,56 @@ public class UsuarioController extends BaseControllerImpl<Usuario, UsuarioServic
                     (e.getMessage() != null ? e.getMessage() : "Error desconocido") + "\"}");
         }
     }
+    
+    private Usuario obtenerUsuarioAutenticado() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        
+        if (authentication == null || !authentication.isAuthenticated() || 
+            "anonymousUser".equals(authentication.getName())) {
+            return null;
+        }
+        
+        return usuarioRepository.findByNombreUsuario(authentication.getName())
+            .orElse(null);
+    }
+    
+    @GetMapping("/perfil")
+    public ResponseEntity<?> obtenerPerfil() {
+        Usuario usuarioActual = obtenerUsuarioAutenticado();
+        
+        if (usuarioActual == null) {
+        	return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"error\":\"Usuario no autenticado\"}");
+        	
+        }
+        
+        return ResponseEntity.ok(UsuarioDTO.fromEntity(usuarioActual));
+    }
+
+    @PutMapping("/actualizar")
+    public ResponseEntity<?> actualizarPerfil(@RequestBody UsuarioDTO usuarioDTO) {
+        Usuario usuarioActual = obtenerUsuarioAutenticado();
+
+        if (usuarioActual == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"error\":\"Usuario no autenticado\"}");
+        }
+
+        usuarioActual.setNombreUsuario(usuarioDTO.getNombreUsuario());
+        usuarioActual.setTelefono(usuarioDTO.getTelefono());
+        usuarioActual.setEmail(usuarioDTO.getEmail());
+
+        Usuario usuarioActualizado = usuarioRepository.save(usuarioActual);
+
+        // Regenerar el token con el nuevo nombre de usuario
+        String nuevoToken = jwtService.generateToken(usuarioActualizado);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("usuario", UsuarioDTO.fromEntity(usuarioActualizado));
+        response.put("token", nuevoToken);
+
+        return ResponseEntity.ok(response);
+    }
+}
+
 	
 
-}
+ 

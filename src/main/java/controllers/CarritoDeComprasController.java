@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import entities.CarritoDeCompras;
 import entities.Usuario;
+import repositories.UsuarioRepository;
 import services.CarritoDeComprasServiceImpl;
 
 @RestController
@@ -30,52 +31,53 @@ public class CarritoDeComprasController extends BaseControllerImpl<CarritoDeComp
 	
 	 @Autowired
      private CarritoDeComprasServiceImpl carritoService;
+	 @Autowired
+	 private UsuarioRepository usuarioRepository;
+	 
+	 
+
+	 private Usuario obtenerUsuarioAutenticado() {
+	     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	     if (authentication == null || !authentication.isAuthenticated() || "anonymousUser".equals(authentication.getName())) {
+	         return null;
+	     }
+
+	     String nombreUsuario = authentication.getName(); // Extrae el nombre de usuario del token
+	     return usuarioRepository.findByNombreUsuario(nombreUsuario).orElse(null); // Busca al usuario por nombre de usuario
+	 }
+
+
 
 	 @PostMapping("/agregar")
-	    public ResponseEntity<?> agregarProductoAlCarrito(
-	            Authentication authentication,
-	            @RequestParam Long productoId,
-	            @RequestParam int cantidad) {
-	        logger.info("Recibida solicitud para agregar producto al carrito. ProductoId: {}, Cantidad: {}", productoId, cantidad);
-	        try {
-	            Usuario usuario = (Usuario) authentication.getPrincipal();
-	            logger.info("Usuario autenticado: {}", usuario.getNombreUsuario());
-	            carritoService.agregarProductoAlCarrito(usuario.getIdUsuario(), productoId, cantidad);
-	            logger.info("Producto agregado al carrito exitosamente");
-	            return ResponseEntity.ok().body("Producto agregado al carrito exitosamente");
-	        } catch (Exception e) {
-	            logger.error("Error al agregar producto al carrito", e);
-	            return ResponseEntity.badRequest().body("Error al agregar producto al carrito: " + e.getMessage());
-	        }
+	 public ResponseEntity<?> agregarProductoAlCarrito(@RequestParam Long productoId, @RequestParam int cantidad) {
+	     try {
+	         Usuario usuario = obtenerUsuarioAutenticado();
+	         if (usuario == null) {
+	             return ResponseEntity.status(401).body("Usuario no autenticado");
+	         }
+
+	         carritoService.agregarProductoAlCarrito(usuario.getIdUsuario(), productoId, cantidad);
+	         return ResponseEntity.ok("Producto agregado al carrito exitosamente");
+	     } catch (Exception e) {
+	         return ResponseEntity.badRequest().body("Error al agregar producto al carrito: " + e.getMessage());
+	     }
 	 }
-	 
+
 	 @GetMapping("/productos")
-	    public ResponseEntity<?> obtenerProductosCarrito() {
-	        logger.info("Recibida solicitud para obtener productos del carrito");
-	        try {
-	            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	            if (authentication == null || !authentication.isAuthenticated()) {
-	                logger.error("Usuario no autenticado");
-	                return ResponseEntity.status(401).body("Usuario no autenticado");
-	            }
-	            
-	            Object principal = authentication.getPrincipal();
-	            if (!(principal instanceof Usuario)) {
-	                logger.error("Principal no es una instancia de Usuario");
-	                return ResponseEntity.status(401).body("Tipo de autenticación no válido");
-	            }
-	            
-	            Usuario usuario = (Usuario) principal;
-	            logger.info("Usuario autenticado: {}", usuario.getNombreUsuario());
-	            
-	            List<Map<String, Object>> productosCarrito = carritoService.obtenerProductosCarrito(usuario.getIdUsuario());
-	            logger.info("Productos del carrito obtenidos exitosamente");
-	            return ResponseEntity.ok().body(productosCarrito);
-	        } catch (Exception e) {
-	            logger.error("Error al obtener productos del carrito", e);
-	            return ResponseEntity.badRequest().body("Error al obtener productos del carrito: " + e.getMessage());
-	        }
-	    }
+	 public ResponseEntity<?> obtenerProductosCarrito() {
+	     try {
+	         Usuario usuario = obtenerUsuarioAutenticado();
+	         if (usuario == null) {
+	             return ResponseEntity.status(401).body("Usuario no autenticado");
+	         }
+
+	         List<Map<String, Object>> productosCarrito = carritoService.obtenerProductosCarrito(usuario.getIdUsuario());
+	         return ResponseEntity.ok(productosCarrito);
+	     } catch (Exception e) {
+	         return ResponseEntity.badRequest().body("Error al obtener productos del carrito: " + e.getMessage());
+	     }
+	 }
+
 	 
 	 
 	 @DeleteMapping("/productos/{productoId}")

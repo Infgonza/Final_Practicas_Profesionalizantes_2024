@@ -145,34 +145,5 @@ function mostrarMensaje(mensaje, tipo) {
     }, 3000);
 }
 
-document.getElementById('proceedToPaymentBtn').addEventListener('click', async function() {
-    try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            throw new Error('No se encontró token de autenticación');
-        }
-
-        // Realizar la solicitud al backend para obtener la URL de Mercado Pago
-        const response = await fetch('http://localhost:8080/api/v1/mp/pago', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error(`Error al proceder al pago: ${response.statusText}`);
-        }
-
-        // Obtener la URL de redirección a Mercado Pago
-        const data = await response.json();
-        
-        // Redirigir al usuario a la URL de Mercado Pago
-        window.location.href = data.url;
-    } catch (error) {
-        console.error('Error al proceder al pago:', error);
-        mostrarMensaje(error.message, 'error');
-    }
-});
 
 

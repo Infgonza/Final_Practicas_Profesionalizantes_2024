@@ -50,6 +50,9 @@ public class Usuario implements UserDetails, Serializable {
 	@Column(name = "email", unique = true)
 	private String email;
 	
+	@Column(name = "telefono")
+	private String telefono;
+	
 	@Column(name = "contrasenia")
 	private String contrasenia;
 	

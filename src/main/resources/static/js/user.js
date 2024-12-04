@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Obtener los valores de los campos de entrada
         const email = document.getElementById('signupEmail').value;
+        const telefono = document.getElementById('signupTelefono').value;
         const password = document.getElementById('signupPassword').value;
         const username = document.getElementById('signupUsername').value;
 
@@ -68,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     nombreUsuario: username,
                     email: email,
                     contrasenia: password,
+                    telefono: telefono
                 }),
             });
     

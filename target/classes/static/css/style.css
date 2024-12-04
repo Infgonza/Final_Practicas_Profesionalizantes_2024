@@ -909,6 +909,12 @@ table {
         .productos-panel .card-body {
             font-size: 0.9rem;
 }
+#proceedToPaymentBtn:disabled {
+    background-color: grey; /* Color gris cuando está deshabilitado */
+    cursor: not-allowed; /* Cursor prohibido */
+    opacity: 0.7; /* Hace el botón más opaco */
+}
+
 .boton-pagar	{
 	font-size: 14px;
 	width: 210px;
@@ -919,6 +925,7 @@ table {
 	padding: 15px;
 	margin-top: 20px;
 }
+
 
 
 
