@@ -64,69 +64,26 @@
 
 <main class="compra">
 	
-	<section class="section-compra">
-		<form  action="/api/v1/clientes/registro" method="POST" id="informacion-compra">
-			<h3 class="h5-compra">Compra</h3>
-				<h5 class="h5-compra">Datos del comprador</h3>
-				<input id="clienteEmail" type="email" class="input-comprador" placeholder="Email" 		required>
-				<input id="clienteNombre" type="text" class="input-comprador" placeholder="Nombre" 		required>
-				<input id="clienteApellido" type="text" class="input-comprador" placeholder="Apellido" 		required>
-				<input id="clienteDni" type=" text" class="input-comprador" placeholder="DNI" 		required>
-				<h5	 class="h5-compra">Dirección</h1>
-				<input id="clienteProvincia"type="text" class="input-comprador" placeholder="Provincia" 		required>
-				<input id="clienteCalle" type="text" class="input-comprador" placeholder="Calle" required>
-				
-				<section>
-					<input id="clienteNumero" type=" text" class="input-domicilio" placeholder="Número" 		required>
-					<input id="clienteCodPostal" type=" text" class="input-domicilio" placeholder="Código postal" 		required>
-					
-					
-				</section>
-				
-				<h5	 class="h5-compra">Medios de pago</h1>
-					
-					<div class="accordion" id="accordionExample">
-					  <div class="accordion-item">
-					    <h2 class="accordion-header" id="headingOne">
-					      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-					        <img draggable="false" class="mp-img" src="/imagenes/mp.png">
-					      </button>
-					    </h2>
-					    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-					      <div class="accordion-body">
-					        <img draggable="false" class="mp-img2" src="/imagenes/mp2.jpg">
-					      </div>
-					    </div>
-					  </div>
-					</div>
+	<div class="container-success">
+	    <div class="success-bar">
+	      <div class="icon"></div>
+	      <span>Compra realizada con éxito</span>
+	    </div>
+	    <div class="content-datos">
+	      <p>Datos del comprador </p>
+	      
+	    </div>
+		<div class="content-producto">
  
-					<button id="proceedToPaymentBtn" type="button" class="boton-pagar" disabled>REALIZAR PEDIDO</button>
-							
-			</form>
-			
 		
-	</section>
-	
-	<section class="section-producto">
-		<div class="container">
-		       <div class="section section-producto">
-		           <h3>Productos</h3>
-				   
-		           <div class="productos-panel">
-		               <div id="productosCarrito"></div>
-		           </div>
-		           
-		           <div id="totalCarrito" class="card mb-4 p-3 fw-bold"></div>
-		       </div>
-		   </div>
-		   
+		</div>
+		
+		
 		  
-	</section>
-	
-	
-	
-   
-   
+		 
+		
+	  </div>
+ 
 </main>
  
  
@@ -198,7 +155,7 @@
 	<script src="js/sesion.js"></script>
 	<script src="js/auth.js"></script>
 	<script src="js/carrito.js"></script>
-	<script src="js/form-compra.js"></script>
+	<script src="js/success.js"></script>
 	<script src="js/auth-navegation.js"></script>
 
 

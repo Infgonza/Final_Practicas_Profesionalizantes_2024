@@ -926,6 +926,111 @@ table {
 	margin-top: 20px;
 }
 
+/* COMPRA REALIZADA */
+
+.container-success {
+	display: flex;
+	flex-direction: column; /* Asegura que los elementos estén apilados */
+	  /* Centra horizontalmente el contenido */
+	justify-content: center; /* Centra verticalmente el contenido */
+      width: 600px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 0px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .success-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #28a745;
+      color: #fff;
+      padding: 10px;
+      position: relative;
+    }
+
+    .success-bar .icon {
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+    }
+
+    .success-bar .icon::after {
+      content: '✔';
+      font-size: 14px;
+      color: #28a745;
+    }
+
+    .content-datos {
+      padding: 20px;
+      text-align: center;
+      color: #333;
+	}
+	
+ 
+	
+	
+	.content-producto {
+	            display: flex;
+	            flex-direction: column;
+	            align-items: center;
+	            padding: 20px;
+	        }
+	        .product-list {
+	            display: flex;
+	            flex-wrap: wrap;
+	            justify-content: center;
+	            gap: 20px;
+	            margin-bottom: 20px;
+	        }
+	        .producto-item {
+	            display: flex;
+	            align-items: center;
+	            border: 1px solid #ddd;
+	            padding: 10px;
+	            border-radius: 8px;
+	        }
+	        .producto-imagen {
+	            max-width: 100px;
+	            max-height: 100px;
+	            margin-right: 15px;
+	        }
+	        .producto-detalles {
+	            flex-grow: 1;
+	        }
+	         
+	
+	.boton-tienda2 {
+	 
+	  width: 50%;
+	  max-width: 800px;
+	  border: none;
+	  box-shadow: none;
+	  background-color:#28a745;
+	  color: white;
+	  text-align: center;
+	  text-decoration: none;
+	  padding: 10px;
+	  font-weight: bold;
+	  margin-top: 20px;
+	}
+	.boton-tienda2 a {
+		
+		  display:flex;
+		  align-items: center;
+		 
+		  justify-content:  center;
+		  position: relative;
+		 }
+
+
 
 
 
