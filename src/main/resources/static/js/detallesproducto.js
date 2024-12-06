@@ -38,7 +38,7 @@ async function detallesProducto() {
 
         if (productoEspecifico) {
             // Actualiza los elementos HTML con la información del producto
-            document.getElementById('featured-image').src = productoEspecifico.imagenUrl;
+            document.getElementById('featured-image').src = productoEspecifico.imagenUrlString;
             document.getElementById('artista').textContent = productoEspecifico.artista;
             document.getElementById('genero').textContent = productoEspecifico.genero;
             document.getElementById('fecha').textContent = productoEspecifico.fechaLanzamiento;

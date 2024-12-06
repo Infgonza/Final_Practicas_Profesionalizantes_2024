@@ -105,8 +105,12 @@ public class UsuarioController extends BaseControllerImpl<Usuario, UsuarioServic
             
             // Encontrar nuevo rol
             RoleEntity newRole = roleRepository.findByNombreRol(
-                nuevoRol.equals("Administrador") ? ERole.Administrador : ERole.Usuario
-            ).orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+            	    nuevoRol.equals("Administrador") 
+            	        ? ERole.Administrador 
+            	        : nuevoRol.equals("Empleado") 
+            	            ? ERole.Empleado 
+            	            : ERole.Usuario
+            	).orElseThrow(() -> new RuntimeException("Rol no encontrado"));
 
             // Verificar que rol no es nulo
             if (usuario.getRoles() == null) {

@@ -23,7 +23,7 @@ async function traerProductos() {
             productosHtml += `
             <div class="product-card">
                 <a href="producto.html?id=${producto.idProducto}">
-                    <img src="${producto.imagenUrl}" alt="${producto.nombre}" class="product-image" id="img-${producto.idProducto}" />
+                    <img src="${producto.imagenUrlString}" alt="${producto.nombre}" class="product-image" id="img-${producto.idProducto}" />
                 </a>
                 <a href="producto.html?id=${producto.idProducto}">
                     <h2 class="nombre-disco" id="nombreDisco-${producto.idProducto}" style="font-size: 20px;">${producto.nombre}</h2>

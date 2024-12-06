@@ -15,6 +15,8 @@ function displayUsers(users) {
              <select class="seleccionar-rol" onchange="cambiarRol(${user.id}, this)">
              <option value="Administrador" ${user.rol === 'Administrador' ? 'selected' : ''}>Administrador</option>
              <option value="Usuario" ${user.rol === 'Usuario' ? 'selected' : ''}>Usuario</option>
+			 <option value="Empleado" ${user.rol === 'Empleado' ? 'selected' : ''}>Empleado</option>
+			 
             </select>
             
             </td>

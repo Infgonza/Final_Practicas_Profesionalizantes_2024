@@ -20,7 +20,16 @@ $(document).ready(function() {
         if (roles.includes('Administrador')) {
             $('#subirProducto').show();
             $('#gestionarUsuarios').show();
+			$('#gestionarProductos').show();
         }
+		if (roles.includes('Empleado')) {
+		    $('#subirProducto').show();
+			$('#gestionarProductos').show();
+		            
+		 }
+		
+		
+		
 
         $('#logoutLink').on('click', function() {
             // Lógica para cerrar sesión

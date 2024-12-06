@@ -45,8 +45,9 @@ public class SecurityConfig   {
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers("/api/v1/auth/**").permitAll()
                 .requestMatchers("/subirproductos.html", "/usuarios.html").permitAll() // Permitir acceso a la página
-                .requestMatchers("/api/v1/productos/verificarPermisoSubir", "/api/v1/usuarios/listar").hasAuthority("Administrador") // Proteger la API
-                .requestMatchers("/**.html", "/api/v1/productos/**", "/productos").permitAll()
+                .requestMatchers("/api/v1/productos/verificarPermisoSubir", "/api/v1/usuarios/listar", "/api/v1/productos/listar")
+                .hasAnyAuthority("Administrador", "Empleado")              
+                .requestMatchers(HttpMethod.GET, "/**.html", "/api/v1/productos", "/productos" ).permitAll()
                 .requestMatchers(HttpMethod.PUT, "/api/v1/usuarios/cambiarRol/**").hasAuthority("Administrador")
                 .requestMatchers("/api/carrito/**", "/api/v1/usuarios/**").authenticated()
                 .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**", "/imagenes/**").permitAll()

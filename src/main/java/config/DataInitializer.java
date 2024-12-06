@@ -3,12 +3,8 @@ package config;
 import java.util.HashSet;
 import java.util.Set;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-
-import repositories.RoleRepository;
-import repositories.UsuarioRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +12,8 @@ import entities.ERole;
 import entities.RoleEntity;
 import entities.Usuario;
 import jakarta.transaction.Transactional;
+import repositories.RoleRepository;
+import repositories.UsuarioRepository;
 
 @Component
 public class DataInitializer implements CommandLineRunner{
@@ -55,6 +53,10 @@ public class DataInitializer implements CommandLineRunner{
         		RoleEntity administrador = new RoleEntity();
         		administrador.setNombreRol(ERole.Administrador);
         		roleRepository.save(administrador);
+        		
+        		RoleEntity empleado = new RoleEntity();
+        		empleado.setNombreRol(ERole.Empleado);
+        		roleRepository.save(empleado);
         		
         	} else {
         		System.out.println("Ya existen los roles: "+ roleRepository.findAll());

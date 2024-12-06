@@ -1,5 +1,8 @@
 package services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +31,51 @@ public class ProductoServiceImpl extends BaseServiceImpl<Producto, Long> impleme
 	
 	@Autowired
 	private S3Service s3Service;
+	
+	
+	
+	public List<ProductoDTO> obtenerTodosLosProductosComoDTO() throws Exception {
+        List<Producto> productos = findAll();
+        return productos.stream()
+            .map(this::convertToDTO)
+            .collect(Collectors.toList());
+    }
+
+    public void eliminarProducto(Long id) throws Exception {
+        
+        delete(id);
+    }
+
+    private ProductoDTO convertToDTO(Producto producto) {
+    	ProductoDTO dto = new ProductoDTO();
+    	 
+        
+        // Mapea los campos de la entidad al DTO
+        dto.setIdProducto(producto.getIdProducto());
+        dto.setNombre(producto.getNombre());
+        dto.setDescripcion(producto.getDescripción());
+        dto.setPrecio(producto.getPrecio());
+        dto.setStock(producto.getStock());
+        dto.setImagenUrlString(producto.getImagenUrl());
+         
+        
+        // Campos específicos para Disco o Vinilo
+        if (producto instanceof Disco disco) {
+            dto.setTipo("DISCO");
+            dto.setArtista(disco.getArtista());
+            dto.setGenero(disco.getGenero());
+            dto.setFechaLanzamiento(disco.getFechaLanzamiento());
+            dto.setImagenUrl(null);  
+        } else if (producto instanceof Vinilo vinilo) {
+            dto.setTipo("VINILO");
+            dto.setArtista(vinilo.getArtista());
+            dto.setGenero(vinilo.getGenero());
+            dto.setFechaLanzamiento(vinilo.getFechaLanzamiento());
+            dto.setImagenUrl(null);  
+        }
+        
+        return dto;
+    }
 	
 	public ProductoServiceImpl(BaseRepository<Producto, Long> baseRepository) {
 		super(baseRepository);

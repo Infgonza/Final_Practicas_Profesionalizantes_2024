@@ -11,8 +11,10 @@ public class ProductoDTO {
 	
 	@JsonIgnore
     private MultipartFile imagenUrl;
+	private String imagenUrlString;
 
 	// Datos producto
+	private Long idProducto;
 	private String nombre;
 	private String descripcion;
 	private double precio;
