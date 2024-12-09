@@ -44,13 +44,14 @@ public class SecurityConfig   {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers("/api/v1/auth/**").permitAll()
-                .requestMatchers("/subirproductos.html", "/usuarios.html").permitAll() // Permitir acceso a la página
+                .requestMatchers("/subirproductos.html", "/usuarios.html", "/contacto/enviar").permitAll() // Permitir acceso a la página
                 .requestMatchers("/api/v1/productos/verificarPermisoSubir", "/api/v1/usuarios/listar", "/api/v1/productos/listar")
                 .hasAnyAuthority("Administrador", "Empleado")              
                 .requestMatchers(HttpMethod.GET, "/**.html", "/api/v1/productos", "/productos" ).permitAll()
                 .requestMatchers(HttpMethod.PUT, "/api/v1/usuarios/cambiarRol/**").hasAuthority("Administrador")
                 .requestMatchers("/api/carrito/**", "/api/v1/usuarios/**").authenticated()
-                .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**", "/imagenes/**").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**", "/imagenes/**", "/favicon.ico").permitAll() 
+                
                 .anyRequest().authenticated())
             .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class);

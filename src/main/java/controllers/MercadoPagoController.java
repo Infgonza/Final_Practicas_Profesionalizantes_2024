@@ -117,7 +117,7 @@ public class MercadoPagoController {
 			String paymentIdString = data.get("id").toString();
 			Long paymentId = Long.parseLong(paymentIdString);
 			
-			// ADENTRO DEL TRY MANEJARIAMOS LOS ESTADOS (APROVADO, PENDIENTE Y FALLIDO)
+			// ADENTRO DEL TRY MANEJARIAMOS LOS ESTADOS (APROBADO, PENDIENTE Y FALLIDO)
 			try {
 				
 			} catch (Exception e) {

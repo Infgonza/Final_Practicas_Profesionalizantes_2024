@@ -9,4 +9,5 @@ public class ProductoViewController {
     public String productos() {
         return "productos"; // Renderiza la página Thymeleaf
     }
+    
 }
