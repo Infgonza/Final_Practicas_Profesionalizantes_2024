@@ -39,7 +39,7 @@ async function cargarProductosCarrito() {
 
         if (!response.ok) {
             if (response.status === 401) {
-                localStorage.removeItem('token'); // Elimina el token si no es válido
+                localStorage.removeItem('token'); 
                 throw new Error('Sesión expirada. Por favor, inicia sesión nuevamente.');
             }
             throw new Error(`HTTP error! status: ${response.status}`);

@@ -1,6 +1,6 @@
 async function displayPurchasedProducts() {
           try {
-              // Fetch the cart products
+             
               const response = await fetch('/api/carrito/productos', {
                   method: 'GET',
                   headers: {
@@ -18,7 +18,6 @@ async function displayPurchasedProducts() {
               
               contentProducto.innerHTML = '';
 
-              // Crear lista de productos
               const productList = document.createElement('div');
               productList.classList.add('product-list');
 
@@ -26,13 +25,11 @@ async function displayPurchasedProducts() {
                   const productDiv = document.createElement('div');
                   productDiv.classList.add('producto-item');
                   
-                  // Create product image
                   const img = document.createElement('img');
                   img.src = producto.imagenUrl  
                   img.alt = producto.nombre;
                   img.classList.add('producto-imagen');
 
-                  // Create product details
                   const detalles = document.createElement('div');
                   detalles.classList.add('producto-detalles');
                   detalles.innerHTML = `
@@ -65,7 +62,51 @@ async function displayPurchasedProducts() {
                   <a href="productos.html" class="boton-tienda">IR A LA TIENDA</a>
               `;
           }
-      }
+}
 
-      // Call the function when the page loads
-      document.addEventListener('DOMContentLoaded', displayPurchasedProducts);
+async function finalizarCompra() {
+    try {
+        
+        const response = await fetch('/api/carrito/productos', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('No se pudieron obtener los productos del carrito');
+        }
+
+        const productosCarrito = await response.json();
+
+        const productosParaDescontar = productosCarrito.map(producto => ({
+            idProducto: producto.id, 
+            stock: producto.cantidad,
+        }));
+
+        const descontarResponse = await fetch('api/v1/productos/descontarStock', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(productosParaDescontar),
+        });
+
+        if (!descontarResponse.ok) {
+            throw new Error('No se pudo descontar el stock');
+        }
+
+        console.log('Stock descontado correctamente');
+    } catch (error) {
+        console.error('Error al finalizar la compra:', error);
+    }
+}
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    displayPurchasedProducts();
+    finalizarCompra();
+});

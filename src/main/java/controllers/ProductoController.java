@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dto.ProductoCantidadDTO;
 import dto.ProductoDTO;
 import entities.Producto;
 import services.ProductoServiceImpl;
@@ -76,4 +78,14 @@ public class ProductoController extends BaseControllerImpl<Producto, ProductoSer
         }
     }
     
-}
+    @PostMapping("/descontarStock")
+    public ResponseEntity<?> procesarCompra(@RequestBody List<ProductoCantidadDTO> productos) {
+        try {
+            for (ProductoCantidadDTO producto : productos) {
+                servicio.descontarStock(producto.getIdProducto(), producto.getStock());
+            }
+            return ResponseEntity.ok("Se descontaron los productos: " + productos.size());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }}

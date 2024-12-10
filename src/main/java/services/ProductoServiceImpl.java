@@ -131,6 +131,23 @@ public class ProductoServiceImpl extends BaseServiceImpl<Producto, Long> impleme
 	 public Producto obtenerProductoPorId(Long id) {
 	        return productoRepository.findById(id)
 	            .orElseThrow(() -> new EntityNotFoundException("Producto no encontrado con id: " + id));
-	    }
+	}
 
+	@Transactional
+	public void descontarStock(Long idProducto, int stock) throws Exception {
+	    // OBTENEMOS EL PRODUCTO POR ID
+	    Producto producto = productoRepository.findById(idProducto)
+	        .orElseThrow(() -> new EntityNotFoundException("Producto no encontrado con id: " + idProducto));
+	     
+	    // VERIFICAMOS QUE EL STOCK SEA SUFICIENTE
+	    if (producto.getStock() < stock) {
+	        throw new IllegalArgumentException("Stock insuficiente para el producto con id: " + idProducto);
+	    }
+	     
+	    // Y DESCONTAMOS DEL STOCK
+	    producto.setStock(producto.getStock() - stock);
+	     
+	    productoRepository.save(producto);
+	}
+	 
 }
