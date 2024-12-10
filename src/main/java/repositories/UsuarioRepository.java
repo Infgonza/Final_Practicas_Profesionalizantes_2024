@@ -13,4 +13,5 @@ public interface UsuarioRepository extends BaseRepository<Usuario, Long> {
     Optional<Usuario> findByNombreUsuario(String nombreUsuario);
     
     
+    
 }

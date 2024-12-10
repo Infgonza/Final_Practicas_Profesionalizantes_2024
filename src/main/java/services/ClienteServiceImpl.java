@@ -29,7 +29,7 @@ public class ClienteServiceImpl extends BaseServiceImpl<Cliente, Long> implement
 	}
 
 	@Transactional
-    public Cliente registrarCliente(ClienteRegistroDTO registroDTO) {
+    public Cliente registrarCliente(ClienteRegistroDTO registroDTO, Long idUsuario) {
         // Crear y guardar Domicilio
         Domicilio domicilio = Domicilio.builder()
                 .calle(registroDTO.getCalle())
@@ -39,22 +39,18 @@ public class ClienteServiceImpl extends BaseServiceImpl<Cliente, Long> implement
                 .build();
         domicilio = domicilioRepository.save(domicilio);
 
-        // Crear y guardar Usuario
-        Usuario usuario = Usuario.builder()
-                .nombreUsuario(registroDTO.getNombreUsuario())
-                .email(registroDTO.getEmail())
-                .contrasenia(registroDTO.getContrasenia()) 
-                .rol(registroDTO.getRol())
-                .build();
-        usuario = usuarioRepository.save(usuario);
+        Usuario usuario = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         // Crear y guardar Cliente
         Cliente cliente = Cliente.builder()
+        		.emailCliente(registroDTO.getEmailCliente())
                 .nombre(registroDTO.getNombre())
                 .apellido(registroDTO.getApellido())
+                .usuario(usuario)
                 .dni(registroDTO.getDni())
                 .domicilio(domicilio)
-                .usuario(usuario)
+                
                 .build();
         cliente = clienteRepository.save(cliente);
 

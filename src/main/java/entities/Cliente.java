@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -38,8 +39,8 @@ public class Cliente implements Serializable{
 	@Column(name="id_cliente")
 	private Long idCliente;
 	
-	@Column(name = "email")
-	private String email;
+	@Column(name = "email_cliente")
+	private String emailCliente;
 	
 	@Column(name = "nombre")
 	private String nombre;
@@ -58,10 +59,10 @@ public class Cliente implements Serializable{
 	@JsonManagedReference
 	private Domicilio domicilio;
 
-	// Un Cliente tiene un usuario
-	@OneToOne(cascade = CascadeType.ALL)
+	 
+	@ManyToOne  
 	@JoinColumn(name = "fk_usuario")
-	@JsonManagedReference
+
 	private Usuario usuario;
 	
 	// Un Cliente tiene una Factura al realizar un compra

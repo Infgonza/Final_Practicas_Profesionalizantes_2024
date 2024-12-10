@@ -7,6 +7,7 @@ public class ClienteRegistroDTO {
 
 	// Datos de Cleinte
     private String nombre;
+    private String emailCliente;
     private String apellido;
     private int dni;
     

@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -61,9 +63,9 @@ public class Usuario implements UserDetails, Serializable {
 
 	// Relaciones
 	
-	@OneToOne(mappedBy = "usuario")
+	@OneToMany(mappedBy = "usuario")
 	@JsonBackReference
-	private Cliente cliente;
+	 private List<Cliente> clientes;
 	
 	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private CarritoDeCompras carrito;
