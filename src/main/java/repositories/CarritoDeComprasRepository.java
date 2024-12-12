@@ -9,8 +9,6 @@ import entities.CarritoDeCompras;
 @Repository
 public interface CarritoDeComprasRepository extends BaseRepository<CarritoDeCompras, Long> {
 	Optional<CarritoDeCompras> findByUsuarioIdUsuario(Long idUsuario);
-	
-	
-	
+
 
 }

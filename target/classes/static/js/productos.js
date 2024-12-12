@@ -20,32 +20,36 @@ async function traerProductos() {
         let productosHtml = '';
 
         for (let producto of productos) {
-            productosHtml += `
-            <div class="product-card">
-                <a href="producto.html?id=${producto.idProducto}">
-                    <img src="${producto.imagenUrlString}" alt="${producto.nombre}" class="product-image" id="img-${producto.idProducto}" />
-                </a>
-                <a href="producto.html?id=${producto.idProducto}">
-                    <h2 class="nombre-disco" id="nombreDisco-${producto.idProducto}" style="font-size: 20px;">${producto.nombre}</h2>
-                </a>
-                <p class="artista-texto">${producto.artista || 'Artista Desconocido'}</p>
-
-                <span class="price" id="precio-${producto.idProducto}">$${producto.precio}</span>
-                <button onclick="agregarAlCarrito(${producto.idProducto}, 1)" >Añadir al carrito</button>
-            </div>
-        `;
+             
+            if (producto.stock > 0) {
+                productosHtml += `
+                <div class="product-card">
+                    <a href="producto.html?id=${producto.idProducto}">
+                        <img src="${producto.imagenUrlString}" alt="${producto.nombre}" class="product-image" id="img-${producto.idProducto}" />
+                    </a>
+                    <a href="producto.html?id=${producto.idProducto}">
+                        <h2 class="nombre-disco" id="nombreDisco-${producto.idProducto}" style="font-size: 20px;">${producto.nombre}</h2>
+                    </a>
+                    <p class="artista-texto">${producto.artista || 'Artista Desconocido'}</p>
+                    <span class="price" id="precio-${producto.idProducto}">$${producto.precio}</span>
+                    <button onclick="agregarAlCarrito(${producto.idProducto}, 1)">Añadir al carrito</button>
+                </div>
+                `;
+            }
         }
 
         const productGrid = document.querySelector('.product-grid');
+        
         if (productGrid) {
             productGrid.innerHTML = productosHtml;
         } else {
-            
+            console.error('No se encontró el contenedor de la grilla de productos');
         }
     } catch (error) {
         console.error('Error al cargar los productos:', error);
     }
 }
+
 
 const token = localStorage.getItem('token');
 

@@ -65,7 +65,9 @@ async function displayPurchasedProducts() {
 }
 
 async function finalizarCompra() {
-    try {
+	let totalCarrito = 0;
+	let productosCarrito = [];
+	try {
         
         const response = await fetch('/api/carrito/productos', {
             method: 'GET',
@@ -78,8 +80,13 @@ async function finalizarCompra() {
             throw new Error('No se pudieron obtener los productos del carrito');
         }
 
-        const productosCarrito = await response.json();
+        productosCarrito = await response.json();
 
+		
+		productosCarrito.forEach(producto => {
+		    totalCarrito += producto.cantidad * producto.precio; 
+		});
+		
         const productosParaDescontar = productosCarrito.map(producto => ({
             idProducto: producto.id, 
             stock: producto.cantidad,
@@ -101,6 +108,32 @@ async function finalizarCompra() {
     } catch (error) {
         console.error('Error al finalizar la compra:', error);
     }
+	
+	// GUARDAR DATOS EN COMPRA
+	try {
+	    const response = await fetch('http://localhost:8080/api/v1/compras/guardar', {
+	        method: 'POST',
+	        headers: {
+	            'Content-Type': 'application/json',
+	        },
+			body: JSON.stringify({
+			                total: totalCarrito,
+			                // productos: productosCarrito <--- para detalle compra 
+			            }),
+	    });
+
+		if (!response.ok) {
+		    const errorDetails = await response.text(); // Obtén el detalle del error
+		    throw new Error(`Error al guardar la compra: ${errorDetails}`);
+		}
+
+	    const compra = await response.json();
+	    console.log('Compra guardada exitosamente:', compra);
+	    alert('Compra guardada exitosamente.');
+	} catch (error) {
+	    console.error('Error al guardar la compra:', error);
+	    //alert('Hubo un problema al guardar la compra. Intenta nuevamente.');
+	}
 }
 
 

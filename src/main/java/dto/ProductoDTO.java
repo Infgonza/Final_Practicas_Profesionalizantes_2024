@@ -19,7 +19,7 @@ public class ProductoDTO {
 	private String descripcion;
 	private double precio;
 	private int stock;
-	
+	private int cantidad;
 	
 	private String tipo; // Disco o Vinilo
 	
