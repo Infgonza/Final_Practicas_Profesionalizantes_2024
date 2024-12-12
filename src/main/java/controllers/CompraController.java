@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dto.CompraDTO;
 import entities.Compra;
-import services.CompraService;
 import services.CompraServiceImpl;
 
 @RestController

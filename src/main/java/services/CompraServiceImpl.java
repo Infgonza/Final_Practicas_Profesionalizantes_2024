@@ -8,13 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dto.CompraDTO;
-import dto.ProductoDTO;
 import entities.CarritoDeCompras;
 import entities.Cliente;
 import entities.Compra;
 import entities.DetalleCompra;
-import entities.Producto;
-import entities.Usuario;
 import repositories.BaseRepository;
 import repositories.CarritoDeComprasRepository;
 import repositories.ClienteRepository;

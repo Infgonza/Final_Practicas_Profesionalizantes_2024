@@ -1,7 +1,6 @@
 package entities;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -60,10 +58,9 @@ public class Compra implements Serializable {
 	@JoinColumn(name="fk_factura")
 	private Factura factura;
 	
-	// Una Compra va a tener un Carrito de Compras
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="fk_carrito")
-	private CarritoDeCompras carrito;
+	@ManyToOne
+    @JoinColumn(name = "fk_carrito" )
+    private CarritoDeCompras carrito;
 	
 
 	// Una Compra va a generar muchos DetalleCompra

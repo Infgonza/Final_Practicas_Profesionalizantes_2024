@@ -50,10 +50,9 @@ public class CarritoDeCompras implements Serializable{
 	@OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ItemCarrito> items = new ArrayList<ItemCarrito>();
 
-	
-	// Un carrito va a representar una Compra
-	@OneToOne(mappedBy = "carrito")
-	private Compra compra;
+	 
+	@OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL)
+	private List<Compra> compra;
 	
 	
 }

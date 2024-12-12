@@ -11,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -44,8 +43,8 @@ public class DetalleCompra implements Serializable {
 	
 	// RELACIONES
 	
-	// Un Detalle Compra va a ser generado por una Compra
-	@ManyToOne(cascade = CascadeType.ALL)
+	 
+	@ManyToOne 
 	@JoinColumn(name = "fk_compra")
 	private Compra compra;
 	
