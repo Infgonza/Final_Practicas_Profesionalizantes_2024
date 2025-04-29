@@ -1,5 +1,6 @@
 package services;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,7 +31,7 @@ public class ProductoServiceImpl extends BaseServiceImpl<Producto, Long> impleme
 	private ViniloRepository viniloRepository;
 	
 	@Autowired
-	private S3Service s3Service;
+	private CloudinaryService cloudinaryService;
 	
 	
 	
@@ -82,9 +83,9 @@ public class ProductoServiceImpl extends BaseServiceImpl<Producto, Long> impleme
 	}
 	
 	@Transactional
-	public Producto crearProducto(ProductoDTO productoDTO) {
+	public Producto crearProducto(ProductoDTO productoDTO) throws IOException {
 		
-		String imagenUrl = s3Service.uploadFile(productoDTO.getImagenUrl());
+		String imagenUrl = cloudinaryService.uploadImage(productoDTO.getImagenUrl());
 		
 		if("DISCO".equalsIgnoreCase(productoDTO.getTipo())) {
 			Disco disco = new Disco();
